@@ -37,6 +37,7 @@ tarjeta CuentaBancaria::nuevaTarjeta() {
 	tarjeta aux;
 	unsigned int mes, ano;
 	int op_metodo;
+	bool repetir = false;
 
 	cout << "INGRESAR TARJETA " << endl << endl;
 	cout << "Seleccione la empresa de su tarjeta: " << endl << endl;
@@ -60,32 +61,45 @@ tarjeta CuentaBancaria::nuevaTarjeta() {
 	cout << "Tipo: " << aux.empresa << endl;
 	cout << "Numero de Tarjeta: "; cin >> aux.numero;
 	cout << "Fecha de Vecimiento: " << endl;
+
+	bool end = false;
 	do {
+
 		cout << "Mes: "; cin >> mes;
 		cout << "Ano: "; cin >> ano;
-		if (mes > 12) cout << "El mes ingresado es invalido..." << endl;
-		if (ano < 1900 || ano > 2050) {
-			cout << "El ano ingresado es invalido..." << endl;
+
+		if (ano < 1900 || ano > 2050 || mes > 12) { //Datos invalidos
+			cout << "Datos ingresados invalidos..." << endl;
 		}
-		else if (ano == 2023 && mes < 7 || ano < 2023) {
+		else if (ano == 2023 && mes < 7 || ano < 2023) { //Tarjeta vencida
 			cout << "La tarjeta esta vencida... Vuelva a ingresar los datos (ENTER)";
+			end = true;
+			repetir = true;
 			cin.ignore(); cin.get();
 			system("cls");
-			nuevaTarjeta();
 		}
-	} while (mes > 12 || ano < 2022 || ano > 2050);
-	aux.vencimiento = to_string(mes) + "\\" + to_string(ano);
-	system("cls");
+		else { //Todos los datos correctos
+			end = true;
+		}
+	} while (end == false);
 
-	cout << "INGRESAR TARJETA " << endl << endl;
-	cout << "Tipo: " << aux.empresa << endl;
-	cout << "Numero de Tarjeta: " << aux.numero << endl;
-	cout << "Fecha de Vecimiento: " << aux.vencimiento << endl;
-	cout << "Titular: "; cin >> aux.titular;
-	cout << "Codigo: "; cin >> aux.codigo;
-	cout << endl;
+	if (repetir) {
+		aux = nuevaTarjeta();
+		return aux;
+	}
+	else {
+		aux.vencimiento = to_string(mes) + "\\" + to_string(ano);
+		system("cls");
 
-	return aux;
+		cout << "INGRESAR TARJETA " << endl << endl;
+		cout << "Tipo: " << aux.empresa << endl;
+		cout << "Numero de Tarjeta: " << aux.numero << endl;
+		cout << "Fecha de Vecimiento: " << aux.vencimiento << endl;
+		cout << "Titular: "; cin >> aux.titular;
+		cout << "Codigo: "; cin >> aux.codigo;
+		cout << endl;
+		return aux;
+	}
 }
 
 tarjeta CuentaBancaria::guardarTarjeta(tarjeta aux, tarjeta metodo) {
