@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Archivos de encabezado\Orden">
+      <UniqueIdentifier>{87f44f31-d0eb-4a33-8ba9-2629275a2067}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -58,6 +61,30 @@
     </ClInclude>
     <ClInclude Include="ValidarTrabajador.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ProductosPadre.h">
+      <Filter>Archivos de encabezado\Orden</Filter>
+    </ClInclude>
+    <ClInclude Include="Pizzas.h">
+      <Filter>Archivos de encabezado\Orden</Filter>
+    </ClInclude>
+    <ClInclude Include="Pastas.h">
+      <Filter>Archivos de encabezado\Orden</Filter>
+    </ClInclude>
+    <ClInclude Include="Bebidas.h">
+      <Filter>Archivos de encabezado\Orden</Filter>
+    </ClInclude>
+    <ClInclude Include="Postres.h">
+      <Filter>Archivos de encabezado\Orden</Filter>
+    </ClInclude>
+    <ClInclude Include="Orden.h">
+      <Filter>Archivos de encabezado\Orden</Filter>
+    </ClInclude>
+    <ClInclude Include="OrdenBuilder.h">
+      <Filter>Archivos de encabezado\Orden</Filter>
+    </ClInclude>
+    <ClInclude Include="SistemaOrdenes.h">
+      <Filter>Archivos de encabezado\Orden</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

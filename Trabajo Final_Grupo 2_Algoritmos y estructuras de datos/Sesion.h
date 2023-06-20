@@ -1,7 +1,9 @@
 #pragma once
 #include "MenuOpciones.h"
 #include "SistemaPagos.h"
+#include "SistemaOrdenes.h"
 #include "Login.h"
+
 
 class Sesion {
 
@@ -20,6 +22,7 @@ public:
     //principales
     void iniciarSesion();
     void menuPrincipal();
+    void sistemaOrdenes();
     void sistemaPagos();
 
 };
@@ -69,6 +72,7 @@ void Sesion::menuPrincipal() {
         int op = menu.mostrarMenu("Cliente");
         system("cls");
         switch (op) {
+        case 1: sistemaOrdenes(); break;
         case 3: sistemaPagos(); break;
         case 4: exit(0);
         }
@@ -92,5 +96,21 @@ void Sesion::sistemaPagos() {
         case 5:continuar = false;  break;
         }
     } while (continuar);
+}
+
+void Sesion::sistemaOrdenes() {
+    SistemaOrdenes ordenes;
+    int op_ordenes;
+
+    do {
+        op_ordenes = ordenes.menuSistemaOrdenes();
+        switch (op_ordenes)
+        {
+        case 1: ordenes.agregar(); break;
+        case 3: ordenes.mostrarOrden(); break;
+        case 5: ordenes.~SistemaOrdenes(); break;
+        }
+    } while (op_ordenes != 5);
+    
 }
 

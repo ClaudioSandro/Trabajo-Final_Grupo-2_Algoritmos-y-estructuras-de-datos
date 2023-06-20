@@ -1,5 +1,4 @@
 #pragma once
-#include "Recursos.h"
 #include "Cliente.h"
 
 class SistemaPagos {

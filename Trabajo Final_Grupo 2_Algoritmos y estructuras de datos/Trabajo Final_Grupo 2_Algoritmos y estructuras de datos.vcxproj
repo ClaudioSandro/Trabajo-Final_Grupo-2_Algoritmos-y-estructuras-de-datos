@@ -117,6 +117,14 @@
   <ItemGroup>
     <ClInclude Include="Cliente.h" />
     <ClInclude Include="CuentaBancaria.h" />
+    <ClInclude Include="SistemaOrdenes.h" />
+    <ClInclude Include="OrdenBuilder.h" />
+    <ClInclude Include="Orden.h" />
+    <ClInclude Include="Pizzas.h" />
+    <ClInclude Include="Pastas.h" />
+    <ClInclude Include="Bebidas.h" />
+    <ClInclude Include="Postres.h" />
+    <ClInclude Include="ProductosPadre.h" />
     <ClInclude Include="Login.h" />
     <ClInclude Include="MenuOpciones.h" />
     <ClInclude Include="MetodoPagos.h" />
