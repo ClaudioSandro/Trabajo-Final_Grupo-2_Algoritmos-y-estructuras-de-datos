@@ -7,7 +7,7 @@ int main()
     Sesion sistema;
 
     do {
-        sistema.iniciarSesion();
+        sistema.menuPrincipal();
     } while (true);
 
     return 0;

@@ -5,7 +5,7 @@
 class SistemaPagos {
 
 private:
-    bool pagoTarjeta(Cliente x);
+    bool pagoTarjeta(Cliente& x);
 
     int opcionesPago();
     int tipoPago();
@@ -101,7 +101,7 @@ void SistemaPagos::eliminarTarjeta(Cliente& x) {
     }
 }
 
-bool SistemaPagos::pagoTarjeta(Cliente x) {
+bool SistemaPagos::pagoTarjeta(Cliente& x) {
     int tipoN = tipoPago();
     string tipo;
 
