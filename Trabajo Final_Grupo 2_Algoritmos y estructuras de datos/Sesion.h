@@ -5,6 +5,7 @@
 #include "Login.h"
 
 
+
 class Sesion {
 
 private:
@@ -13,6 +14,8 @@ private:
     //Trabajador usuarioTrabajador
     Login loginSesion;
     string tipoCuenta = "Cliente";
+    vector<Orden*> boletas;
+
 public:
 
     //get-set
@@ -24,7 +27,7 @@ public:
     void menuPrincipal();
     void sistemaOrdenes();
     void sistemaPagos();
-
+    
 };
 
 void Sesion::iniciarSesion() {
@@ -100,6 +103,7 @@ void Sesion::sistemaPagos() {
 
 void Sesion::sistemaOrdenes() {
     SistemaOrdenes ordenes;
+    
     int op_ordenes;
 
     do {
@@ -109,10 +113,10 @@ void Sesion::sistemaOrdenes() {
         case 1: ordenes.agregar(); break;
         case 2: ordenes.eliminar(); break;
         case 3: ordenes.mostrarOrden(); break;
-        case 4: ordenes.confirmar(); break;
+        case 4: ordenes.confirmar(usuarioCliente.getPersonal());break;
         }
-    } while (op_ordenes != 5);
+    } while (op_ordenes != 5 && op_ordenes != 4);
+    
 
- 
 }
 

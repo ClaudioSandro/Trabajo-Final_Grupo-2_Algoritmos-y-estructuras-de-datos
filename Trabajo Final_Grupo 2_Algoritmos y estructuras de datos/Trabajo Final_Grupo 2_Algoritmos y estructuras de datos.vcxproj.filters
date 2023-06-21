@@ -16,6 +16,18 @@
     <Filter Include="Archivos de encabezado\Orden">
       <UniqueIdentifier>{87f44f31-d0eb-4a33-8ba9-2629275a2067}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Pagos">
+      <UniqueIdentifier>{bec331ab-bcb6-4ba6-9ff8-633dfe3c34f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Usuario">
+      <UniqueIdentifier>{f9a31306-10cc-4be1-8fc9-1f9341d59948}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Login">
+      <UniqueIdentifier>{76c07fef-0eac-4d2d-987f-414c277d6789}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Controladores">
+      <UniqueIdentifier>{0dfbcccd-e724-4533-98ab-022c4132ed59}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -23,43 +35,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sesion.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="MenuOpciones.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="SistemaPagos.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Login.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Recursos.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Cliente.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="CuentaBancaria.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="MetodoPagos.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Usuario.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Tarjetas.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Registro.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="ValidarCliente.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="ValidarTrabajador.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="ProductosPadre.h">
@@ -83,8 +62,41 @@
     <ClInclude Include="OrdenBuilder.h">
       <Filter>Archivos de encabezado\Orden</Filter>
     </ClInclude>
+    <ClInclude Include="CuentaBancaria.h">
+      <Filter>Archivos de encabezado\Pagos</Filter>
+    </ClInclude>
+    <ClInclude Include="MetodoPagos.h">
+      <Filter>Archivos de encabezado\Pagos</Filter>
+    </ClInclude>
+    <ClInclude Include="Usuario.h">
+      <Filter>Archivos de encabezado\Usuario</Filter>
+    </ClInclude>
+    <ClInclude Include="Cliente.h">
+      <Filter>Archivos de encabezado\Usuario</Filter>
+    </ClInclude>
+    <ClInclude Include="Tarjetas.h">
+      <Filter>Archivos de encabezado\Pagos</Filter>
+    </ClInclude>
+    <ClInclude Include="Login.h">
+      <Filter>Archivos de encabezado\Login</Filter>
+    </ClInclude>
+    <ClInclude Include="Registro.h">
+      <Filter>Archivos de encabezado\Login</Filter>
+    </ClInclude>
+    <ClInclude Include="ValidarTrabajador.h">
+      <Filter>Archivos de encabezado\Login</Filter>
+    </ClInclude>
+    <ClInclude Include="ValidarCliente.h">
+      <Filter>Archivos de encabezado\Login</Filter>
+    </ClInclude>
     <ClInclude Include="SistemaOrdenes.h">
-      <Filter>Archivos de encabezado\Orden</Filter>
+      <Filter>Archivos de encabezado\Controladores</Filter>
+    </ClInclude>
+    <ClInclude Include="Sesion.h">
+      <Filter>Archivos de encabezado\Controladores</Filter>
+    </ClInclude>
+    <ClInclude Include="SistemaPagos.h">
+      <Filter>Archivos de encabezado\Controladores</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

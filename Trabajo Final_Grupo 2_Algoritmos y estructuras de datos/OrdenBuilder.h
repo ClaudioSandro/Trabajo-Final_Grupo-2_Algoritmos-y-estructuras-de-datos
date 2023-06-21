@@ -44,4 +44,6 @@ public:
     Orden obtenerOrden() {
         return orden;
     }
+
+    string estado() { return orden.getEstado(); }
 };

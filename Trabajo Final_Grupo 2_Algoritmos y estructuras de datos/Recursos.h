@@ -25,3 +25,18 @@ struct DCliente {
 	string contraseñaCliente;
 	string usuarioCliente;
 };
+
+struct info {
+	string nombre;
+	string telefono;
+	string direccion;
+};
+
+struct data {
+	string usuario;
+	string contraseña;
+};
+
+void linea() {
+	cout << "--------------------------------------------"; cout << endl;
+}

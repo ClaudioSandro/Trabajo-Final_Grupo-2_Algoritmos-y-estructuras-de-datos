@@ -6,6 +6,9 @@
 
 class Orden {
 
+private:
+    string estado = "Por pagar";
+
 public:
 
     vector<Pizza*> pizzas;
@@ -14,9 +17,16 @@ public:
     vector<Postre*> postres;
     double total = 0.0;
 
+    
+    Orden() {};
     ~Orden();
+
+    string getEstado() { return estado; }
+    void setEstado(string _estado) { estado = _estado; }
+
     void mostrarOrden();
     void mostrarTipo(string tipo);
+   
 
 };
 
@@ -58,7 +68,7 @@ void Orden::mostrarOrden() {
         cout << endl;
     }
     cout << endl;
-    cout << "Total: S/" << total << endl << endl;
+    cout << "Total: S/" << total << endl;
 }
 
 void Orden::mostrarTipo(string tipo) {
@@ -99,3 +109,5 @@ void Orden::mostrarTipo(string tipo) {
         }
     }
 }
+
+
