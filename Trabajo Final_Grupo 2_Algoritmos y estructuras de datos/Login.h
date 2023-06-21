@@ -1,15 +1,18 @@
 #pragma once
 #include "Recursos.h"
 #include "Registro.h"
+#include "ValidarCliente.h"
 
 class Login {
 private:
+    int Respuesta;
 public:
 	Login() { }
 	~Login() { }
 
 	void CrearCuentaCliente();
-	void ValidaCliente();
+    void MostrarMenuCliente();
+	bool ValidaCliente();
 	void ValidaTrabajador();
 };
 
@@ -21,31 +24,44 @@ void Login::CrearCuentaCliente() {
 	ValidaCliente();
 }
 
-void Login::ValidaCliente() {
-	int Respuesta;
-	//ValidarCliente validarClientaso;
+void Login::MostrarMenuCliente() {
+    
+    do {
+        system("cls");
+        cout << "Como cliente voy a... " << endl << "1. Iniciar sesion " << endl << "2. Registrarse \n\n" << "Opcion: ";
+        cin >> Respuesta;
+    } while (Respuesta < 1 || Respuesta > 2);
+}
 
-	string nombreCliente;
-	string contraseñaCliente;
+bool Login::ValidaCliente() {
+    
+    ValidarCliente validarClientaso;
 
-	cout << "Como cliente usted va a: " << endl << "Iniciar sesion (1)" << endl << "Registrarse(2)";
-	cin >> Respuesta;
+    string nombreCliente;
+    string contraseñaCliente;
 
-	switch (Respuesta) {
-	case 1:
-		cout << "Ingrese su Nombre de cliente: ";
-		cin >> nombreCliente;
+    
+    MostrarMenuCliente();
 
-		cout << "Ingrese su Contraseña de cliente: ";
-		cin >> contraseñaCliente;
+    if (Respuesta == 1) {
+        system("cls");
+        cout << "Ingrese su Nombre de cliente: ";
+        cin >> nombreCliente;
 
-		//ValidarClientaso.validar(nombreCliente, contraseñaCliente);
-		break;
-	case 2:
-		CrearCuentaCliente();
-		break;
-	}
+        cout << "Ingrese su Contrasenia de cliente: ";
+        cin >> contraseñaCliente;
 
+        if (validarClientaso.validacion(nombreCliente, contraseñaCliente)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    else {
+        // Manejar la opción de registrarse aquí o devolver un valor adecuado
+        return false;
+    }
 }
 
 void Login::ValidaTrabajador() {

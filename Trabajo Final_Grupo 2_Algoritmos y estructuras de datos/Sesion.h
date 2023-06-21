@@ -31,19 +31,11 @@ public:
 };
 
 void Sesion::iniciarSesion() {
+    Login loginSesion;
 
-    string tipo;
-    tipo = "Cliente"; //Este dato se obtiene del proceso de login
-
-    if (tipo == "Cliente") {
-        //Pasar los datos de usuario cliente
-    }
-    if (tipo == "Trabajador") {
-        //Pasar los datos de usuario trabajador
-    }
     int opcionSesion;
     do {
-
+        system("cls");
         cout << "BIENVENIDO A LA APP SAPORE D'ITALIA" << endl << endl;
         cout << "1. Soy Cliente" << endl;
         cout << "2. Soy Trabajador" << endl;
@@ -51,20 +43,27 @@ void Sesion::iniciarSesion() {
         cout << "Opcion: ";
         cin >> opcionSesion;
 
+        switch (opcionSesion) {
+        case 1:
+            if (loginSesion.ValidaCliente() == true) {
+                system("cls");
+                menuPrincipal(); 
+            }
+            else {
+                cout << "No se pudo iniciar sesion" << endl; 
+            }
+            break;
+        case 2:
+            /*system("cls");
+            loginSesion.ValidaTrabajador();
+            break;*/
+        case 3:
+            exit(0);
+        }
+
     } while (opcionSesion < 1 || opcionSesion > 3);
 
-    switch (opcionSesion) {
-    case 1:
-        system("cls");
-        loginSesion.ValidaCliente();
-        menuPrincipal();
-        break;
-    case 2:
-        system("cls");
-        loginSesion.ValidaTrabajador();
-        break;
-    case 3: exit(0);
-    }
+   
 }
 
 void Sesion::menuPrincipal() {
@@ -94,7 +93,7 @@ void Sesion::sistemaPagos() {
         {
         case 1:pagos.pagar(usuarioCliente); break;
         case 2:pagos.mostrarTarjeta(usuarioCliente); break;
-        case 3:usuarioCliente.nuevaTarjeta(); break;
+        case 3:usuarioCliente.nuevaTarjeta(); break; 
         case 4:pagos.eliminarTarjeta(usuarioCliente); break;
         case 5:continuar = false;  break;
         }
