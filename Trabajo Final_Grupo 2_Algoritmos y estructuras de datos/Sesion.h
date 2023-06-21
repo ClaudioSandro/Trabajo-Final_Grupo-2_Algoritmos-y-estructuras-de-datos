@@ -113,6 +113,6 @@ void Sesion::sistemaOrdenes() {
         }
     } while (op_ordenes != 5);
 
-    ordenes.~SistemaOrdenes();
+ 
 }
 
