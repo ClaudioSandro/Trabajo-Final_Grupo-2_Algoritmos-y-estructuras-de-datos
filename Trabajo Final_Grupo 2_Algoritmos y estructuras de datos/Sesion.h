@@ -13,7 +13,7 @@ private:
     Cliente usuarioCliente;
     //Trabajador usuarioTrabajador
     Login loginSesion;
-    string tipoCuenta = "Cliente";
+    string tipoCuenta = "";
     vector<Orden*> boletas;
 
 public:
@@ -47,6 +47,7 @@ void Sesion::iniciarSesion() {
         case 1:
             if (loginSesion.ValidaCliente() == true) {
                 system("cls");
+                setTipoCuenta("Cliente");
                 menuPrincipal();
             }
             else {
@@ -54,8 +55,14 @@ void Sesion::iniciarSesion() {
             }
             break;
         case 2:
-            system("cls");
-            loginSesion.ValidaTrabajador();
+            if (loginSesion.ValidaTrabajador() == true) {
+                system("cls");
+                setTipoCuenta("Trabajador");
+                menuPrincipal(); 
+            }
+            else {
+                cout << "No se pudo iniciar sesion" << endl;
+            }
             break;
         case 3:
             exit(0);
@@ -79,6 +86,18 @@ void Sesion::menuPrincipal() {
         case 4: iniciarSesion(); break;
         }
     }
+	else if (tipoCuenta == "Trabajador") {
+		int op = menu.mostrarMenu("Trabajador");
+		system("cls");
+		switch (op) {
+        case 1: break;
+        case 2: break;
+        case 3: break;
+        case 4: break;
+        case 5: break;
+		case 6: iniciarSesion(); break;
+		}
+	}
 
     //Lo mismo para trabajador
 }

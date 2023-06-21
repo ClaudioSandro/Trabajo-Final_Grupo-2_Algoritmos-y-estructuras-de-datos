@@ -15,7 +15,7 @@ public:
 		string line;
 		while (getline(archivo, line)) {
 			stringstream s(line);
-			string nombreCliente, telefonoCliente, direccionCliente; //no son necesarios
+			string nombreCliente, telefonoCliente, direccionCliente; //no son necesarios, pero se deben leer
 			string userCliente1, passwordCliente1;
 			string aux;
 
@@ -39,7 +39,7 @@ public:
 			}
 		}
 
-		cout << "Usuario o contrasenia incorrectos" << endl;
+		cout << "Usuario y/o contrasenia incorrectos" << endl;
 		return false;
 	}
 };

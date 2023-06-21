@@ -2,18 +2,21 @@
 #include "Recursos.h"
 #include "Registro.h"
 #include "ValidarCliente.h"
+#include "ValidarTrabajador.h"
 
 class Login {
 private:
-    int Respuesta;
+    int RespuestaCliente; 
+    int RespuestaTrabajador; 
 public:
     Login() { }
     ~Login() { }
 
     void CrearCuentaCliente();
     void MostrarMenuCliente();
+    //void MostrarMenuTrabajador(); //No tiene sentido que el trabajador se registre, solo que inicie sesion
     bool ValidaCliente();
-    void ValidaTrabajador();
+    bool ValidaTrabajador();
 };
 
 void Login::CrearCuentaCliente() {
@@ -29,9 +32,10 @@ void Login::MostrarMenuCliente() {
     do {
         system("cls");
         cout << "Como cliente voy a... " << endl << "1. Iniciar sesion " << endl << "2. Registrarse \n\n" << "Opcion: ";
-        cin >> Respuesta;
-    } while (Respuesta < 1 || Respuesta > 2);
+        cin >> RespuestaCliente;
+    } while (RespuestaCliente < 1 || RespuestaCliente > 2);
 }
+
 
 bool Login::ValidaCliente() {
 
@@ -43,7 +47,7 @@ bool Login::ValidaCliente() {
 
     MostrarMenuCliente();
 
-    switch (Respuesta) {
+    switch (RespuestaCliente) {
     case 1:
         system("cls");
         cout << "Ingrese su Nombre de cliente: ";
@@ -70,15 +74,22 @@ bool Login::ValidaCliente() {
     }
 }
 
-void Login::ValidaTrabajador() {
+bool Login::ValidaTrabajador() {
     string IDTrabajador, contraseñaTrabajador;
-    //ValidarTrabajador validarTrabajadoraso;
+    ValidarTrabajador validarTrabajadoraso;
 
+    system("cls"); 
     cout << "Ingrese su ID de trabajador: ";
     cin >> IDTrabajador;
 
     cout << "Ingrese su Contraseña de trabajador: ";
     cin >> contraseñaTrabajador;
 
-    //validarTrabajadoraso(IDTrabajador, contraseñaTrabajador);
+    
+    if (validarTrabajadoraso.validacionTrabajadoraso(IDTrabajador, contraseñaTrabajador)) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
