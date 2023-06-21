@@ -13,7 +13,7 @@ public:
 			cout << "1. Crear Orden" << endl;
 			cout << "2. Ver mis ordenes pendientes" << endl;
 			cout << "3. Sistema de pagos" << endl;
-			cout << "4. Salir" << endl << endl;
+			cout << "4. Volver al Logout" << endl << endl;
 			cout << "Opcion: "; cin >> op;
 
 			return op;

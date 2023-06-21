@@ -13,7 +13,7 @@ public:
 		DatosCliente.telefonoCliente = "";
 		DatosCliente.direccionCliente = "";
 		DatosCliente.usuarioCliente = "";
-		DatosCliente.contraseñaCliente = "";
+		DatosCliente.contraseniaCliente = "";
 	}
 	~Registro() { }
 
@@ -24,7 +24,7 @@ public:
 
 void Registro::escribir(string nombreCliente1, string telefonoCliente1, string direccionCliente1, string usuarioCliente1, string contraseñaCliente1) {
 	ofstream archivo;
-	archivo.open("Clientes.txt", ios::out);
+	archivo.open("Cliente.txt", ios::app);
 	if (archivo.is_open())
 	{
 		archivo << nombreCliente1 << ",";
@@ -54,9 +54,13 @@ void Registro::LlenarFormulario() {
 	cin >> DatosCliente.usuarioCliente;
 
 	cout << "Ingrese su Contraseña: ";
-	cin >> DatosCliente.contraseñaCliente;
+	cin >> DatosCliente.contraseniaCliente;
 
-	escribir(DatosCliente.nombreCliente, DatosCliente.telefonoCliente, DatosCliente.direccionCliente, DatosCliente.usuarioCliente, DatosCliente.contraseñaCliente);
+	escribir(DatosCliente.nombreCliente, DatosCliente.telefonoCliente, DatosCliente.direccionCliente, DatosCliente.usuarioCliente, DatosCliente.contraseniaCliente);
+
+	cout << "\n\nSe ha creado su cuenta exitosamente, ahora inicie sesion con su Usuario y Contrasenia" << endl;
+	system("pause");
+
 }
 
 

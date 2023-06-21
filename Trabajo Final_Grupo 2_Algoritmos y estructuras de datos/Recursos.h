@@ -22,7 +22,7 @@ struct DCliente {
 	string nombreCliente;
 	string telefonoCliente;
 	string direccionCliente;
-	string contraseñaCliente;
+	string contraseniaCliente;
 	string usuarioCliente;
 };
 

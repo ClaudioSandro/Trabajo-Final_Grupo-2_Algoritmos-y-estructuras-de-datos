@@ -27,7 +27,7 @@ public:
     void menuPrincipal();
     void sistemaOrdenes();
     void sistemaPagos();
-    
+
 };
 
 void Sesion::iniciarSesion() {
@@ -37,9 +37,9 @@ void Sesion::iniciarSesion() {
     do {
         system("cls");
         cout << "BIENVENIDO A LA APP SAPORE D'ITALIA" << endl << endl;
-        cout << "1. Soy Cliente" << endl;
-        cout << "2. Soy Trabajador" << endl;
-        cout << "3. Salir" << endl << endl;
+        cout << "1. Login like Cliente" << endl;
+        cout << "2. Login like Trabajador" << endl;
+        cout << "3. Salir de Sapore D' Italia" << endl << endl;
         cout << "Opcion: ";
         cin >> opcionSesion;
 
@@ -47,23 +47,23 @@ void Sesion::iniciarSesion() {
         case 1:
             if (loginSesion.ValidaCliente() == true) {
                 system("cls");
-                menuPrincipal(); 
+                menuPrincipal();
             }
             else {
-                cout << "No se pudo iniciar sesion" << endl; 
+                cout << "No se pudo iniciar sesion" << endl;
             }
             break;
         case 2:
-            /*system("cls");
+            system("cls");
             loginSesion.ValidaTrabajador();
-            break;*/
+            break;
         case 3:
             exit(0);
         }
 
     } while (opcionSesion < 1 || opcionSesion > 3);
 
-   
+
 }
 
 void Sesion::menuPrincipal() {
@@ -76,7 +76,7 @@ void Sesion::menuPrincipal() {
         switch (op) {
         case 1: sistemaOrdenes(); break;
         case 3: sistemaPagos(); break;
-        case 4: exit(0);
+        case 4: iniciarSesion(); break;
         }
     }
 
@@ -93,7 +93,7 @@ void Sesion::sistemaPagos() {
         {
         case 1:pagos.pagar(usuarioCliente); break;
         case 2:pagos.mostrarTarjeta(usuarioCliente); break;
-        case 3:usuarioCliente.nuevaTarjeta(); break; 
+        case 3:usuarioCliente.nuevaTarjeta(); break;
         case 4:pagos.eliminarTarjeta(usuarioCliente); break;
         case 5:continuar = false;  break;
         }
@@ -102,7 +102,7 @@ void Sesion::sistemaPagos() {
 
 void Sesion::sistemaOrdenes() {
     SistemaOrdenes ordenes;
-    
+
     int op_ordenes;
 
     do {
@@ -112,10 +112,10 @@ void Sesion::sistemaOrdenes() {
         case 1: ordenes.agregar(); break;
         case 2: ordenes.eliminar(); break;
         case 3: ordenes.mostrarOrden(); break;
-        case 4: ordenes.confirmar(usuarioCliente.getPersonal());break;
+        case 4: ordenes.confirmar(usuarioCliente.getPersonal()); break;
         }
     } while (op_ordenes != 5 && op_ordenes != 4);
-    
+
 
 }
 

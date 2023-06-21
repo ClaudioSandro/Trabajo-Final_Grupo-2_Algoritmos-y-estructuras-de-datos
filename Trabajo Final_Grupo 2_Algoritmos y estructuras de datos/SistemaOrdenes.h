@@ -20,13 +20,13 @@ public:
 	int opcionPizzas();
 	int opcionBebidas();
 	int opcionPastas();
-	int opcionPostres();
+	int opcionPostres(){ return 0; }
 	int opcionEliminarTipo(string tipo);
 
 	void agregarPizza();
 	void agregarPasta();
-	void agregarBebida();
-	void agregarPostre();
+	void agregarBebida(){ }
+	void agregarPostre(){ }
 	void eliminarTipo(string tipo);
 
 	void agregar();
