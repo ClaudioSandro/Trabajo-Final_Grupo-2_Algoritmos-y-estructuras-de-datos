@@ -13,12 +13,20 @@ public:
 	~SistemaOrdenes() { delete builder;}
 
 	int menuSistemaOrdenes();
-	int opcionAgregar();
-	int opcionPizzas();
-	void agregarPizza();
 
+	int opcionAgregar();
+	int opcionEliminar();
+	int opcionPizzas();
+	int opcionEliminarTipo(string tipo);
+
+	void agregarPizza();
+	void eliminarTipo(string tipo);
+	
 	void agregar();
+	void eliminar();
+	void confirmar();
 	void mostrarOrden();
+	
 };
 
 int SistemaOrdenes::menuSistemaOrdenes() {
@@ -51,6 +59,21 @@ int SistemaOrdenes::opcionAgregar() {
 	return op;
 }
 
+int SistemaOrdenes::opcionEliminar() {
+	int op;
+
+	cout << "SELECCIONE LO QUE DESEE ELIMINAR" << endl << endl;
+	cout << "1. Eliminar pizza" << endl;
+	cout << "2. Eliminar pasta" << endl;
+	cout << "3. Eliminar bebida" << endl;
+	cout << "4. Eliminar Postre" << endl;
+	cout << "5. Volver" << endl << endl;
+	cout << "Opcion: "; cin >> op;
+	system("cls");
+
+	return op;
+}
+
 int SistemaOrdenes::opcionPizzas() {
 	int op;
 
@@ -62,6 +85,15 @@ int SistemaOrdenes::opcionPizzas() {
 	cout << "5. Volver" << endl << endl; 
 	cout << "Opcion: "; cin >> op; cout << endl;
 	
+	return op;
+}
+
+int SistemaOrdenes::opcionEliminarTipo(string tipo) {
+	int op;
+	cout << "SELECCIONE LA PIZZA A ELIMINAR " << endl << endl;
+	builder->mostrarEnum(tipo);
+	cout << "0. Volver"; cout << endl << endl;
+	cout << "Opcion: "; cin >> op; cout << endl;
 	return op;
 }
 
@@ -97,6 +129,39 @@ void SistemaOrdenes::agregarPizza() {
 		cin.ignore(); cin.get(); system("cls");
 	}			
 }
+
+void SistemaOrdenes::eliminar() {
+	int op_eliminar;
+	do {
+		op_eliminar = opcionEliminar();
+
+		switch (op_eliminar)
+		{
+		case 1: eliminarTipo("pizza"); break;
+		}
+	} while (op_eliminar != 5);
+
+	system("cls");
+}
+
+void SistemaOrdenes::eliminarTipo(string tipo) {
+
+	if (tipo == "pizza") {
+		int op;
+		do {
+			op = opcionEliminarTipo(tipo);
+			if (op != 0) {
+				builder->eliminarPizza(op - 1);
+				cout << "Se elimino la pizza en la posicion " << op << "...Presione Enter para continuar...";
+				cin.ignore(); cin.get();
+				system("cls");
+			}
+		} while (op != 0);
+	}
+	system("cls");	
+}
+
+void SistemaOrdenes::confirmar(){}
 
 void SistemaOrdenes::mostrarOrden() {
 

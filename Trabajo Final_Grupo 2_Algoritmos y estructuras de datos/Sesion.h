@@ -107,10 +107,12 @@ void Sesion::sistemaOrdenes() {
         switch (op_ordenes)
         {
         case 1: ordenes.agregar(); break;
+        case 2: ordenes.eliminar(); break;
         case 3: ordenes.mostrarOrden(); break;
-        case 5: ordenes.~SistemaOrdenes(); break;
+        case 4: ordenes.confirmar(); break;
         }
     } while (op_ordenes != 5);
-    
+
+    ordenes.~SistemaOrdenes();
 }
 

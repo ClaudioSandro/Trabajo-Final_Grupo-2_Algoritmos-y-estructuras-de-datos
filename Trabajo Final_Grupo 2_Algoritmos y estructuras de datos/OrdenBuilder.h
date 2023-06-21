@@ -27,8 +27,18 @@ public:
         orden.total += postre->getPrecio();
     }
 
+    void eliminarPizza(int pos) {
+        Pizza* pizza = orden.pizzas[pos];
+        orden.total -= pizza->getPrecio();
+        orden.pizzas.erase(orden.pizzas.begin() + pos);    
+    }
+
     void mostrar() {
         orden.mostrarOrden();
+    }
+
+    void mostrarEnum(string tipo) {
+        orden.mostrarTipo(tipo);
     }
 
     Orden obtenerOrden() {

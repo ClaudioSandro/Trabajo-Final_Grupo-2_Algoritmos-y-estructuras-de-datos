@@ -16,6 +16,7 @@ public:
 
     ~Orden();
     void mostrarOrden();
+    void mostrarTipo(string tipo);
 
 };
 
@@ -58,4 +59,43 @@ void Orden::mostrarOrden() {
     }
     cout << endl;
     cout << "Total: S/" << total << endl << endl;
+}
+
+void Orden::mostrarTipo(string tipo) {
+
+    if (tipo == "pizza") {
+        int cont = 1;
+        for (const auto& pizza : pizzas) {
+            cout << cont << ". " << pizza->getNombre();
+            cout << endl;
+            cont++;
+        }
+    }
+
+    if (tipo == "pasta") {
+        int cont = 1;
+        for (const auto& pasta : pastas) {
+            cout << cont << ". " << pasta->getNombre();
+            cout << endl;
+            cont++;
+        }
+    }
+
+    if (tipo == "bebida") {
+        int cont = 1;
+        for (const auto& bebida : bebidas) {
+            cout << cont << ". " << bebida->getNombre();
+            cout << endl;
+            cont++;
+        }
+    }
+
+    if (tipo == "postre") {
+        int cont = 1;
+        for (const auto& postre : postres) {
+            cout << cont << ". " << postre->getNombre();
+            cout << endl;
+            cont++;
+        }
+    }
 }
