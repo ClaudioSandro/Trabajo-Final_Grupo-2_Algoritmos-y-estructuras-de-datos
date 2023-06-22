@@ -45,5 +45,5 @@ public:
         return orden;
     }
 
-    string estado() { return orden.getEstado(); }
+   
 };

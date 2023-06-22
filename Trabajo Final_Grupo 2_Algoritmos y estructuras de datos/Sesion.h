@@ -14,7 +14,7 @@ private:
     //Trabajador usuarioTrabajador
     Login loginSesion;
     string tipoCuenta = "";
-    vector<Orden*> boletas;
+    vector<Boleta*> boletas;
 
 public:
 
@@ -24,7 +24,7 @@ public:
 
     //principales
     void iniciarSesion();
-    void menuPrincipal();
+    int menuPrincipal();
     void sistemaOrdenes();
     void sistemaPagos();
 
@@ -48,7 +48,11 @@ void Sesion::iniciarSesion() {
             if (loginSesion.ValidaCliente() == true) {
                 system("cls");
                 setTipoCuenta("Cliente");
-                menuPrincipal();
+                int op;
+                do {
+                    op = menuPrincipal();
+                } while (op!= 4);
+                
             }
             else {
                 cout << "No se pudo iniciar sesion" << endl;
@@ -73,7 +77,7 @@ void Sesion::iniciarSesion() {
 
 }
 
-void Sesion::menuPrincipal() {
+int Sesion::menuPrincipal() {
 
     string tipoCuenta = getTipoCuenta(); //Esto se obtiene del sistema de validacion de cuenta
 
@@ -83,8 +87,9 @@ void Sesion::menuPrincipal() {
         switch (op) {
         case 1: sistemaOrdenes(); break;
         case 3: sistemaPagos(); break;
-        case 4: iniciarSesion(); break;
+        case 4: break;
         }
+        return op;
     }
 	else if (tipoCuenta == "Trabajador") {
 		int op = menu.mostrarMenu("Trabajador");
@@ -131,7 +136,10 @@ void Sesion::sistemaOrdenes() {
         case 1: ordenes.agregar(); break;
         case 2: ordenes.eliminar(); break;
         case 3: ordenes.mostrarOrden(); break;
-        case 4: ordenes.confirmar(usuarioCliente.getPersonal()); break;
+        case 4: 
+            Boleta * boleta = ordenes.confirmar(usuarioCliente.getPersonal());
+            boletas.push_back(boleta);
+            break;
         }
     } while (op_ordenes != 5 && op_ordenes != 4);
 

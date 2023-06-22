@@ -1,7 +1,6 @@
 #pragma once
 #include "OrdenBuilder.h"
-#include "Pizzas.h"
-#include "Postres.h"
+#include "Boleta.h"
 
 class SistemaOrdenes {
 
@@ -31,7 +30,7 @@ public:
 
 	void agregar();
 	void eliminar();
-	void confirmar(info us);
+	Boleta* confirmar(info us);
 	void mostrarOrden();
 
 };
@@ -287,25 +286,18 @@ void SistemaOrdenes::eliminarTipo(string tipo) {
 	system("cls");
 }
 
-void SistemaOrdenes::confirmar(info us) {
-	cout << "Se confirmo la orden de venta!!! Recuerde realizar el pago de su boleta dentro del sistema de pagos" << endl << endl;
+Boleta* SistemaOrdenes::confirmar(info us) {
 
-	linea();
-	cout << "              SAPORE D'ITALIA" << endl;
-	linea();
-	cout << "DATOS DEL CLIENTE:" << endl << endl;
-	cout << "Nombre: " << us.nombre << endl;
-	cout << "Direccion: " << us.direccion << endl;
-	cout << "Telefono: " << us.telefono << endl;
-	linea();
-	cout << "DETALLES DE LA COMPRA:" << endl << endl;
-	builder->mostrar();
-	linea();
-	cout << "Estado: " << builder->estado() << endl;
-	linea();
+	Orden orden = builder->obtenerOrden();
+	//Boleta* boleta = new Boleta(us, orden.pizzas, orden.pastas, orden.bebidas, orden.postres, orden.total);
+	Boleta* boleta = new Boleta(us, orden);
+	cout << "Se confirmo la orden de venta!!! Recuerde realizar el pago de su boleta dentro del sistema de pagos" << endl << endl;
+	boleta->mostrar();
 	cout << endl << "Presione Enter para continuar...";
 	cin.ignore(); cin.get();
 	system("cls");
+
+	return boleta;
 
 }
 

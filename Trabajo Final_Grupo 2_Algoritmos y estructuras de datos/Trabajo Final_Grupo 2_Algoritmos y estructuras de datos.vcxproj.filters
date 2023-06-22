@@ -98,5 +98,8 @@
     <ClInclude Include="SistemaPagos.h">
       <Filter>Archivos de encabezado\Controladores</Filter>
     </ClInclude>
+    <ClInclude Include="Boleta.h">
+      <Filter>Archivos de encabezado\Orden</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

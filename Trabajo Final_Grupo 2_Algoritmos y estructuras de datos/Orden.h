@@ -6,9 +6,6 @@
 
 class Orden {
 
-private:
-    string estado = "Por pagar";
-
 public:
 
     vector<Pizza*> pizzas;
@@ -17,21 +14,18 @@ public:
     vector<Postre*> postres;
     double total = 0.0;
 
-    
+
     Orden() {};
     ~Orden();
 
-    string getEstado() { return estado; }
-    void setEstado(string _estado) { estado = _estado; }
-
     void mostrarOrden();
     void mostrarTipo(string tipo);
-   
+
 
 };
 
 Orden::~Orden() {
-    for (const auto& pizza : pizzas) {
+    /*for (const auto& pizza : pizzas) {
         delete pizza;
     }
     for (const auto& pasta : pastas) {
@@ -42,27 +36,27 @@ Orden::~Orden() {
     }
     for (const auto& postre : postres) {
         delete postre;
-    }
+    }*/
 }
 
 void Orden::mostrarOrden() {
-    
-    
+
+
     for (const auto& pizza : pizzas) {
         cout << pizza->getNombre() << " S/" << pizza->getPrecio();
         cout << endl;
     }
-     
+
     for (const auto& pasta : pastas) {
         cout << pasta->getNombre() << " S/" << pasta->getPrecio();
         cout << endl;
     }
-    
+
     for (const auto& bebida : bebidas) {
         cout << bebida->getNombre() << " S/" << bebida->getPrecio();
         cout << endl;
     }
-    
+
     for (const auto& postre : postres) {
         cout << postre->getNombre() << " S/" << postre->getPrecio();
         cout << endl;
@@ -109,5 +103,4 @@ void Orden::mostrarTipo(string tipo) {
         }
     }
 }
-
 
