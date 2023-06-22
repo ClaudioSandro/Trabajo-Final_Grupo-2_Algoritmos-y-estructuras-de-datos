@@ -216,39 +216,39 @@ void SistemaOrdenes::agregarPizza() {
 
 void SistemaOrdenes::agregarPasta() {
 
-	int opPizzas = opcionPastas();
+	int opPastas = opcionPastas();
 
-	if (opPizzas == 1) {
+	if (opPastas == 1) {
 		Pasta* pasta = new Spaghetti_a_lo_Alfredo();
 		builder->agregarPasta(pasta);
 		cout << "Se agrego Spaghetti a lo Alfredo al pedido! Presione Enter para continuar...";
 		cin.ignore(); cin.get(); system("cls");
 	}
-	if (opPizzas == 2) {
+	if (opPastas == 2) {
 		Pasta* pasta = new Pasta_Puttanesca();
 		builder->agregarPasta(pasta);
 		cout << "Se agrego Pasta Puttanesca al pedido! Presione Enter para continuar...";
 		cin.ignore(); cin.get(); system("cls");
 	}
-	if (opPizzas == 3) {
+	if (opPastas == 3) {
 		Pasta* pasta = new Tallarines_y_Champinones();
 		builder->agregarPasta(pasta);
 		cout << "Se agrego Tallarines en Salsa Blanca y Mushrooms al pedido! Presione Enter para continuar...";
 		cin.ignore(); cin.get(); system("cls");
 	}
-	if (opPizzas == 4) {
+	if (opPastas == 4) {
 		Pasta* pasta = new Raviolis();
 		builder->agregarPasta(pasta);
 		cout << "Se agrego Raviolis al pedido! Presione Enter para continuar...";
 		cin.ignore(); cin.get(); system("cls");
 	}
-	if (opPizzas == 5) {
+	if (opPastas == 5) {
 		Pasta* pasta = new Lasagna_Original();
 		builder->agregarPasta(pasta);
 		cout << "Se agrego Lasagna Original Italiana al pedido! Presione Enter para continuar...";
 		cin.ignore(); cin.get(); system("cls");
 	}
-	if (opPizzas == 6) {
+	if (opPastas == 6) {
 		Pasta* pasta = new Lasagna_Especial();
 		builder->agregarPasta(pasta);
 		cout << "Se agrego Lasagna Especial de la Casa al pedido! Presione Enter para continuar...";
