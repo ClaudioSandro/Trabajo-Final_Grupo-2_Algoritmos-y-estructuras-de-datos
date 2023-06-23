@@ -28,6 +28,8 @@ public:
 	void agregarPostre(){ }
 	void eliminarTipo(string tipo);
 
+	bool preguntaPagar();
+
 	void agregar();
 	void eliminar();
 	Boleta* confirmar(info us);
@@ -43,7 +45,7 @@ int SistemaOrdenes::menuSistemaOrdenes() {
 	cout << "2. Eliminar del pedido" << endl;
 	cout << "3. Mostrar Orden" << endl;
 	cout << "4. Confirmar Orden" << endl;
-	cout << "5. Cancelar Orden" << endl << endl;
+	cout << "0. Cancelar Orden" << endl << endl;
 	cout << "Opcion: "; cin >> op;
 	system("cls");
 
@@ -58,7 +60,7 @@ int SistemaOrdenes::opcionAgregar() {
 	cout << "2. Agregar pasta" << endl;
 	cout << "3. Agregar bebida" << endl;
 	cout << "4. Agregar Postre" << endl;
-	cout << "5. Volver" << endl << endl;
+	cout << "0. Volver" << endl << endl;
 	cout << "Opcion: "; cin >> op;
 	system("cls");
 
@@ -73,7 +75,7 @@ int SistemaOrdenes::opcionEliminar() {
 	cout << "2. Eliminar pasta" << endl;
 	cout << "3. Eliminar bebida" << endl;
 	cout << "4. Eliminar Postre" << endl;
-	cout << "5. Volver" << endl << endl;
+	cout << "0. Volver" << endl << endl;
 	cout << "Opcion: "; cin >> op;
 	system("cls");
 
@@ -82,35 +84,46 @@ int SistemaOrdenes::opcionEliminar() {
 
 int SistemaOrdenes::opcionPizzas() {
 	int op;
-
+	Pizza* x;
 	cout << "SELECCIONE LA PIZZA QUE DESEA AGREGAR" << endl << endl;
-	cout << "1. Americana" << endl;
-	cout << "2. Hawaiana" << endl;
-	cout << "3. Mozzarela" << endl;
-	cout << "4. Pepperoni" << endl;
-	cout << "5. Vegetariana" << endl;
-	cout << "6. Suprema" << endl;
-	cout << "7. Barbacoa" << endl;
-	cout << "8. Calzone" << endl;
-	cout << "9. Volver" << endl << endl;
+	x = new Americana();
+	cout << "1. Americana S/" << x->getPrecio() << endl;
+	x = new Hawaiana();
+	cout << "2. Hawaiana S/" << x->getPrecio() << endl;
+	x = new Mozzarela();
+	cout << "3. Mozzarela S/" << x->getPrecio() << endl;
+	x = new Pepperoni();
+	cout << "4. Pepperoni S/" << x->getPrecio() << endl;
+	x = new Vegetariana();
+	cout << "5. Vegetariana S/" << x->getPrecio() << endl;
+	x = new Suprema();
+	cout << "6. Suprema S/" << x->getPrecio() << endl;
+	x = new Barbacoa();
+	cout << "7. Barbacoa S/" << x->getPrecio() << endl;
+	x = new Calzone();
+	cout << "8. Calzone S/" << x->getPrecio() << endl;
+	cout << "0. Volver" << endl << endl;
 	cout << "Opcion: "; cin >> op; cout << endl;
 
+	delete x;
 	return op;
 }
 
 int SistemaOrdenes::opcionBebidas() {
 	int op;
+	
 
 	cout << "SELECCIONE LA PIZZA QUE DESEA AGREGAR" << endl << endl;
-	cout << "1. Americana" << endl;
-	cout << "2. Hawaiana" << endl;
-	cout << "3. Mozzarela" << endl;
-	cout << "4. Pepperoni" << endl;
-	cout << "5. Vegetariana" << endl;
-	cout << "6. Suprema" << endl;
-	cout << "7. Barbacoa" << endl;
-	cout << "8. Calzone" << endl;
-	cout << "9. Volver" << endl << endl;
+	
+	cout << "1. Americana " << endl;
+	cout << "2. Hawaiana " << endl;
+	cout << "3. Mozzarela " << endl;
+	cout << "4. Pepperoni " << endl;
+	cout << "5. Vegetariana " << endl;
+	cout << "6. Suprema " << endl;
+	cout << "7. Barbacoa " << endl;
+	cout << "8. Calzone " << endl;
+	cout << "0. Volver" << endl << endl;
 	cout << "Opcion: "; cin >> op; cout << endl;
 
 	return op;
@@ -118,17 +131,25 @@ int SistemaOrdenes::opcionBebidas() {
 
 int SistemaOrdenes::opcionPastas() {
 	int op;
+	Pasta* x;
 
 	cout << "SELECCIONE LA PASTA QUE DESEA AGREGAR" << endl << endl;
-	cout << "1. Spaghetti a lo Alfredo" << endl;
-	cout << "2. Pasta Puttanesca" << endl;
-	cout << "3. Tallarines en Salsa Blanca y Mushrooms" << endl;
-	cout << "4. Raviolis" << endl;
-	cout << "5. Lasagna Original Italiana" << endl;
-	cout << "6. Lasagna Especial de la Casa" << endl;
-	cout << "7. Volver" << endl << endl;
+	x = new Spaghetti_a_lo_Alfredo();
+	cout << "1. Spaghetti a lo Alfredo S/" << x->getPrecio() << endl;
+	x = new Pasta_Puttanesca();
+	cout << "2. Pasta Puttanesca S/" << x->getPrecio() << endl;
+	x = new Tallarines_y_Champinones();
+	cout << "3. Tallarines en Salsa Blanca y Mushrooms S/" << x->getPrecio() << endl;
+	x = new Raviolis();
+	cout << "4. Raviolis S/" << x->getPrecio() << endl;
+	x = new Lasagna_Original();
+	cout << "5. Lasagna Original Italiana S/" << x->getPrecio() << endl;
+	x = new Lasagna_Especial();
+	cout << "6. Lasagna Especial de la Casa S/" << x->getPrecio() << endl;
+	cout << "0. Volver" << endl << endl;
 	cout << "Opcion: "; cin >> op; cout << endl;
 
+	delete x;
 	return op;
 }
 
@@ -154,7 +175,7 @@ void SistemaOrdenes::agregar() {
 		case 3: agregarBebida(); break;
 		case 4: agregarPostre(); break;
 		}
-	} while (op_agregar != 5);
+	} while (op_agregar != 0);
 
 	system("cls");
 }
@@ -264,7 +285,7 @@ void SistemaOrdenes::eliminar() {
 		{
 		case 1: eliminarTipo("pizza"); break;
 		}
-	} while (op_eliminar != 5);
+	} while (op_eliminar != 0);
 
 	system("cls");
 }
@@ -291,11 +312,12 @@ Boleta* SistemaOrdenes::confirmar(info us) {
 	Orden orden = builder->obtenerOrden();
 	//Boleta* boleta = new Boleta(us, orden.pizzas, orden.pastas, orden.bebidas, orden.postres, orden.total);
 	Boleta* boleta = new Boleta(us, orden);
-	cout << "Se confirmo la orden de venta!!! Recuerde realizar el pago de su boleta dentro del sistema de pagos" << endl << endl;
-	boleta->mostrar();
-	cout << endl << "Presione Enter para continuar...";
-	cin.ignore(); cin.get();
-	system("cls");
+	cout << "CONFIRMACION DE ORDEN" << endl << endl;
+	cout << "Procesando orden..." << endl;
+	cout << "Se confirmo la orden de venta!!!" << endl << endl;
+	boleta->mostrar(); cout << endl;
+	cout << "Presione Enter para continuar...";
+	cin.ignore(); cin.get(); system("cls");
 
 	return boleta;
 

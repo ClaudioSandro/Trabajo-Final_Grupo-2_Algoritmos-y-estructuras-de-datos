@@ -9,7 +9,7 @@
 class Sesion {
 
 private:
-    MenuOpciones menu;
+    
     Cliente usuarioCliente;
     //Trabajador usuarioTrabajador
     Login loginSesion;
@@ -22,13 +22,27 @@ public:
     string getTipoCuenta() { return tipoCuenta; }
     void setTipoCuenta(string _tipoCuenta) { tipoCuenta = _tipoCuenta; }
 
+    int opcionBoletas();
     //principales
     void iniciarSesion();
     int menuPrincipal();
     void sistemaOrdenes();
     void sistemaPagos();
-
+    void sistemaBoletas();
 };
+
+int Sesion::opcionBoletas() {
+    int op;
+
+    cout << "Que boletas desea ver?" << endl << endl;
+    cout << "1. Boletas pagadas" << endl;
+    cout << "2. Boletas por pagar" << endl;
+    cout << "3. Todas las boletas" << endl;
+    cout << "0. Volver" << endl << endl;
+    cout << "Opcion: "; cin >> op;
+    system("cls");
+    return op;
+}
 
 void Sesion::iniciarSesion() {
     Login loginSesion;
@@ -79,6 +93,7 @@ void Sesion::iniciarSesion() {
 
 int Sesion::menuPrincipal() {
 
+    MenuOpciones menu;
     string tipoCuenta = getTipoCuenta(); //Esto se obtiene del sistema de validacion de cuenta
 
     if (tipoCuenta == "Cliente") {
@@ -86,6 +101,7 @@ int Sesion::menuPrincipal() {
         system("cls");
         switch (op) {
         case 1: sistemaOrdenes(); break;
+        case 2: sistemaBoletas(); break;
         case 3: sistemaPagos(); break;
         case 4: break;
         }
@@ -126,6 +142,7 @@ void Sesion::sistemaPagos() {
 
 void Sesion::sistemaOrdenes() {
     SistemaOrdenes ordenes;
+    SistemaPagos pagos;
 
     int op_ordenes;
 
@@ -138,11 +155,73 @@ void Sesion::sistemaOrdenes() {
         case 3: ordenes.mostrarOrden(); break;
         case 4: 
             Boleta * boleta = ordenes.confirmar(usuarioCliente.getPersonal());
-            boletas.push_back(boleta);
-            break;
+            
+            int op;
+            cout << "Desea pagar su boleta en este momento?" << endl << endl;
+            cout << "1. Si" << endl;
+            cout << "2. Pagar mas tarde " << endl << endl;
+            cout << "Opcion: "; cin >> op; cout << endl;
+            if (op == 1) {
+                system("cls");
+                pagos.pagar(usuarioCliente); boletas.push_back(boleta); break;
+            }
+            else if (op == 2) {
+                boletas.push_back(boleta);
+                cout << "El pago de la boleta queda pendiente..." << endl;
+                cout << "Recuerde hacer el pago de su boleta mediante el sistema de pagos" << endl << endl;
+                cout << "Presione Enter para continuar...";
+                cin.ignore(); cin.get(); system("cls");
+                break;
+            }
+            
         }
-    } while (op_ordenes != 5 && op_ordenes != 4);
+    } while (op_ordenes != 0 && op_ordenes != 4);
 
 
+}
+
+void Sesion::sistemaBoletas() {
+    int op;
+
+    do {
+        op = opcionBoletas();
+
+        if (op == 1) {
+            int cont = 0;
+            for (const auto& boleta : boletas) {
+                if (boleta->getEstado() == "Cancelado" || boleta->getEstado() == "En efectivo") {
+                    cout << "BOLETA 00" << cont + 1 << endl << endl;
+                    boleta->mostrar(); cout << endl;
+                }
+                cont++;
+            }
+            cout << "Presione Enter para continuar...";
+            cin.ignore(); cin.get(); system("cls");
+        }
+
+        if (op == 2) {
+            int cont = 0;
+            for (const auto& boleta : boletas) {
+                if (boleta->getEstado() == "Por pagar") {
+                    cout << "BOLETA 00" << cont + 1 << endl << endl;
+                    boleta->mostrar(); cout << endl;
+                }
+                cont++;
+            }
+            cout << "Presione Enter para continuar...";
+            cin.ignore(); cin.get(); system("cls");
+        }
+
+        if (op == 3) {
+            int cont = 0;
+            for (const auto& boleta : boletas) {
+                cout << "BOLETA 00" << cont + 1 << endl << endl;
+                boleta->mostrar(); cout << endl;
+                cont++;
+            }
+            cout << "Presione Enter para continuar...";
+            cin.ignore(); cin.get(); system("cls");
+        }
+    } while (op != 0);
 }
 

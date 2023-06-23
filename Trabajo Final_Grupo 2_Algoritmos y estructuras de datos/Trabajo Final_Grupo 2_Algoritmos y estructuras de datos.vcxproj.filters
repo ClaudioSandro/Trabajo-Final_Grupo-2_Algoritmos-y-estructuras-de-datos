@@ -35,9 +35,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MenuOpciones.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Recursos.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -100,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="Boleta.h">
       <Filter>Archivos de encabezado\Orden</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuOpciones.h">
+      <Filter>Archivos de encabezado\Controladores</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

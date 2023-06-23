@@ -11,7 +11,7 @@ public:
 			int op1;
 			cout << "BIENVENIDO A LA APP SAPORE D'ITALIA" << endl << endl;
 			cout << "1. Crear Orden" << endl;
-			cout << "2. Ver mis ordenes pendientes" << endl;
+			cout << "2. Ver mis ordenes" << endl;
 			cout << "3. Sistema de pagos" << endl;
 			cout << "4. Volver al Logout" << endl << endl;
 			cout << "Opcion: "; cin >> op1;
