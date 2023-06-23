@@ -23,6 +23,7 @@ public:
     void setTipoCuenta(string _tipoCuenta) { tipoCuenta = _tipoCuenta; }
 
     int opcionBoletas();
+    int opcionPagarBoleta();
     //principales
     void iniciarSesion();
     int menuPrincipal();
@@ -41,6 +42,24 @@ int Sesion::opcionBoletas() {
     cout << "0. Volver" << endl << endl;
     cout << "Opcion: "; cin >> op;
     system("cls");
+    return op;
+}
+
+int Sesion::opcionPagarBoleta() {
+    int op;
+    cout << "SELECCIONE LA BOLETA QUE DESEA PAGAR" << endl << endl;
+    int cont = 0;
+    for (const auto& boleta : boletas) {
+        if (boleta->getEstado() == "Por pagar") {
+            linea();
+            cout << "BOLETA 00" << cont + 1 << endl;
+            
+            boleta->mostrar(); cout << endl << endl;
+        }
+        cont++;
+    }
+    cout << "NINGUNA 000" << endl << endl << endl;
+    cout << "Ingrese el numero de la boleta a pagar: "; cin >> op;
     return op;
 }
 
@@ -128,10 +147,20 @@ void Sesion::sistemaPagos() {
     bool continuar = true;
 
     do {
+        int nboleta;
         int op = pagos.menuPagos();
         switch (op)
         {
-        case 1:pagos.pagar(usuarioCliente); break;
+        case 1:
+            nboleta = opcionPagarBoleta() - 1;            
+            if (nboleta != -1 && boletas[nboleta]->getEstado() == "Por pagar") {
+                system("cls");
+                pagos.pagar(usuarioCliente, boletas[nboleta]);
+            }
+            else {
+                system("cls");
+            }
+            break;
         case 2:pagos.mostrarTarjeta(usuarioCliente); break;
         case 3:usuarioCliente.nuevaTarjeta(); break;
         case 4:pagos.eliminarTarjeta(usuarioCliente); break;
@@ -154,7 +183,7 @@ void Sesion::sistemaOrdenes() {
         case 2: ordenes.eliminar(); break;
         case 3: ordenes.mostrarOrden(); break;
         case 4: 
-            Boleta * boleta = ordenes.confirmar(usuarioCliente.getPersonal());
+            Boleta * bol = ordenes.confirmar(usuarioCliente.getPersonal());
             
             int op;
             cout << "Desea pagar su boleta en este momento?" << endl << endl;
@@ -163,10 +192,10 @@ void Sesion::sistemaOrdenes() {
             cout << "Opcion: "; cin >> op; cout << endl;
             if (op == 1) {
                 system("cls");
-                pagos.pagar(usuarioCliente); boletas.push_back(boleta); break;
+                pagos.pagar(usuarioCliente, bol); boletas.push_back(bol); break;
             }
             else if (op == 2) {
-                boletas.push_back(boleta);
+                boletas.push_back(bol);
                 cout << "El pago de la boleta queda pendiente..." << endl;
                 cout << "Recuerde hacer el pago de su boleta mediante el sistema de pagos" << endl << endl;
                 cout << "Presione Enter para continuar...";
@@ -176,7 +205,7 @@ void Sesion::sistemaOrdenes() {
             
         }
     } while (op_ordenes != 0 && op_ordenes != 4);
-
+    
 
 }
 
@@ -189,9 +218,11 @@ void Sesion::sistemaBoletas() {
         if (op == 1) {
             int cont = 0;
             for (const auto& boleta : boletas) {
-                if (boleta->getEstado() == "Cancelado" || boleta->getEstado() == "En efectivo") {
-                    cout << "BOLETA 00" << cont + 1 << endl << endl;
-                    boleta->mostrar(); cout << endl;
+                if (boleta->getEstado() == "Cancelado" || boleta->getEstado() == "Pago durante entrega") {
+                    linea();
+                    cout << "BOLETA 00" << cont + 1 << endl;
+                    
+                    boleta->mostrar(); cout << endl << endl;
                 }
                 cont++;
             }
@@ -203,8 +234,10 @@ void Sesion::sistemaBoletas() {
             int cont = 0;
             for (const auto& boleta : boletas) {
                 if (boleta->getEstado() == "Por pagar") {
-                    cout << "BOLETA 00" << cont + 1 << endl << endl;
-                    boleta->mostrar(); cout << endl;
+                    linea();
+                    cout << "BOLETA 00" << cont + 1 << endl;
+                    
+                    boleta->mostrar(); cout << endl << endl;
                 }
                 cont++;
             }
@@ -215,8 +248,10 @@ void Sesion::sistemaBoletas() {
         if (op == 3) {
             int cont = 0;
             for (const auto& boleta : boletas) {
-                cout << "BOLETA 00" << cont + 1 << endl << endl;
-                boleta->mostrar(); cout << endl;
+                linea();
+                cout << "BOLETA 00" << cont + 1 << endl;
+                
+                boleta->mostrar(); cout << endl << endl;
                 cont++;
             }
             cout << "Presione Enter para continuar...";

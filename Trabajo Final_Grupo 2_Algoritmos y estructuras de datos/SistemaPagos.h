@@ -1,30 +1,31 @@
 #pragma once
 #include "Cliente.h"
+#include "Boleta.h"
 
 class SistemaPagos {
 
 private:
-    bool pagoTarjeta(Cliente& x);
+    bool pagoTarjeta(Cliente& x, Boleta*& boleta);
 
-    int opcionesPago();
+    int opcionesPago(Boleta* boleta);
     int tipoPago();
 
 public:
 
-    void pagar(Cliente& x);
+    void pagar(Cliente& x, Boleta*& boleta);
     void mostrarTarjeta(Cliente& x);
     void eliminarTarjeta(Cliente& x);
     int menuPagos();
 };
 
-void SistemaPagos::pagar(Cliente& x) {
+void SistemaPagos::pagar(Cliente& x, Boleta*& boleta) {
     //Falta una seleccion de boleta
 
-    int op = opcionesPago();
+    int op = opcionesPago(boleta);
 
     if (op == 1) { //Si desea pagar con tarjeta
-        bool repetir = pagoTarjeta(x);
-        if (repetir) pagar(x);
+        bool repetir = pagoTarjeta(x, boleta);
+        if (repetir) pagar(x, boleta);
     }
     else if (op == 2) {
         int op_entrega;
@@ -36,12 +37,13 @@ void SistemaPagos::pagar(Cliente& x) {
         if (op_entrega == 1) {
             cout << "El pago se relizara durante la entrega... Presione Enter para continuar" << endl << endl;
             //Set en la boleta -> Estado de pago: Se realizara durante entrega
+            boleta->setEstado("Pago durante entrega");
             cin.ignore(); cin.get();
             system("cls");
         }
         else {
             system("cls");
-            pagar(x);
+            pagar(x, boleta);
         }
 
     }
@@ -100,7 +102,7 @@ void SistemaPagos::eliminarTarjeta(Cliente& x) {
     }
 }
 
-bool SistemaPagos::pagoTarjeta(Cliente& x) {
+bool SistemaPagos::pagoTarjeta(Cliente& x, Boleta*& boleta) {
     int tipoN = tipoPago();
     string tipo;
 
@@ -114,12 +116,14 @@ bool SistemaPagos::pagoTarjeta(Cliente& x) {
     }
     if (x.pagar(tipo, x.getMetodo())) { //Llama al proceso de pago
         //Set boleta -> Estado de pago: Cancelada
+        boleta->setEstado("Cancelado");
         return false;
 
     }
     else {
+        
         //Set boleta -> Estado de pago: Sin Cancelar(rojo)
-        pagoTarjeta(x);
+        pagoTarjeta(x, boleta);
     }
 }
 
@@ -139,8 +143,9 @@ int SistemaPagos::menuPagos() {
     return op;
 }
 
-int SistemaPagos::opcionesPago() {
+int SistemaPagos::opcionesPago(Boleta* boleta) {
     int op;
+    boleta->mostrar(); cout << endl;
     cout << "Como desea realizar el pago de su boleta?" << endl << endl;
     cout << "1. Cancelar mediante la aplicacion (tarjeta)" << endl;
     cout << "2. Cancelar durante la entrega (presencial)" << endl;
