@@ -19,16 +19,14 @@ public:
 	int opcionPizzas();
 	int opcionBebidas();
 	int opcionPastas();
-	int opcionPostres(){ return 0; }
+	int opcionPostres();
 	int opcionEliminarTipo(string tipo);
 
 	void agregarPizza();
 	void agregarPasta();
-	void agregarBebida(){ }
-	void agregarPostre(){ }
+	void agregarBebida();
+	void agregarPostre();
 	void eliminarTipo(string tipo);
-
-	bool preguntaPagar();
 
 	void agregar();
 	void eliminar();
@@ -111,24 +109,45 @@ int SistemaOrdenes::opcionPizzas() {
 
 int SistemaOrdenes::opcionBebidas() {
 	int op;
+	Bebida* x;
+	cout << "SELECCIONE LA BEBIDA QUE DESEA AGREGAR" << endl << endl;
+	x = new CocaCola();
+	cout << "1. Coca Cola 1.5L S/" << x->getPrecio() << endl;
+	x = new IncaCola();
+	cout << "2. Inca Cola 1.5L S/" << x->getPrecio() << endl;
+	x = new Sprite();
+	cout << "3. Sprite Personal S/" << x->getPrecio() << endl;
+	x = new Fanta();
+	cout << "4. Fanta Personal S/" << x->getPrecio() << endl;
+	x = new AguaMineral();
+	cout << "5. Agua personal S/" << x->getPrecio() << endl;
 	
-
-	cout << "SELECCIONE LA PIZZA QUE DESEA AGREGAR" << endl << endl;
-	
-	cout << "1. Americana " << endl;
-	cout << "2. Hawaiana " << endl;
-	cout << "3. Mozzarela " << endl;
-	cout << "4. Pepperoni " << endl;
-	cout << "5. Vegetariana " << endl;
-	cout << "6. Suprema " << endl;
-	cout << "7. Barbacoa " << endl;
-	cout << "8. Calzone " << endl;
 	cout << "0. Volver" << endl << endl;
 	cout << "Opcion: "; cin >> op; cout << endl;
 
+	delete x;
 	return op;
 }
 
+int SistemaOrdenes::opcionPostres() {
+	int op;
+	Postre* x;
+	cout << "SELECCIONE EL POSTRE QUE DESEA AGREGAR" << endl << endl;
+	x = new Pizza_de_chocolate();
+	cout << "1. Pizza de Chocolate S/" << x->getPrecio() << endl;
+	x = new Churro_D_ITALIA();
+	cout << "2. Churro d'Italia (4 un) S/" << x->getPrecio() << endl;
+	x = new Rolls_De_Manajar();
+	cout << "3. Rolls de Manjar (6 un) S/" << x->getPrecio() << endl;
+	x = new Volcan_De_Chocolate();
+	cout << "4. Volcan de Chocolate S/" << x->getPrecio() << endl;
+	
+	cout << "0. Volver" << endl << endl;
+	cout << "Opcion: "; cin >> op; cout << endl;
+
+	delete x;
+	return op;
+}
 int SistemaOrdenes::opcionPastas() {
 	int op;
 	Pasta* x;
@@ -175,9 +194,10 @@ void SistemaOrdenes::agregar() {
 		case 3: agregarBebida(); break;
 		case 4: agregarPostre(); break;
 		}
+		
 	} while (op_agregar != 0);
 
-	system("cls");
+	
 }
 
 void SistemaOrdenes::agregarPizza() {
@@ -188,50 +208,51 @@ void SistemaOrdenes::agregarPizza() {
 		Pizza* pizza = new Americana();
 		builder->agregarPizza(pizza);
 		cout << "Se agrego Pizza Americana al pedido! Presione Enter para continuar...";
-		cin.ignore(); cin.get(); system("cls");
+		cin.ignore(); cin.get(); 
 	}
 	if (opPizzas == 2) {
 		Pizza* pizza = new Hawaiana();
 		builder->agregarPizza(pizza);
 		cout << "Se agrego Pizza Hawaiana al pedido! Presione Enter para continuar...";
-		cin.ignore(); cin.get(); system("cls");
+		cin.ignore(); cin.get(); 
 	}
 	if (opPizzas == 3) {
 		Pizza* pizza = new Mozzarela();
 		builder->agregarPizza(pizza);
 		cout << "Se agrego Pizza Mozzarela al pedido! Presione Enter para continuar...";
-		cin.ignore(); cin.get(); system("cls");
+		cin.ignore(); cin.get(); 
 	}
 	if (opPizzas == 4) {
 		Pizza* pizza = new Pepperoni();
 		builder->agregarPizza(pizza);
 		cout << "Se agrego Pizza Pepperoni al pedido! Presione Enter para continuar...";
-		cin.ignore(); cin.get(); system("cls");
+		cin.ignore(); cin.get(); 
 	}
 	if (opPizzas == 5) {
 		Pizza* pizza = new Vegetariana();
 		builder->agregarPizza(pizza);
 		cout << "Se agrego Pizza Vegetariana al pedido! Presione Enter para continuar...";
-		cin.ignore(); cin.get(); system("cls");
+		cin.ignore(); cin.get(); 
 	}
 	if (opPizzas == 6) {
 		Pizza* pizza = new Suprema();
 		builder->agregarPizza(pizza);
 		cout << "Se agrego Pizza Suprema al pedido! Presione Enter para continuar...";
-		cin.ignore(); cin.get(); system("cls");
+		cin.ignore(); cin.get(); 
 	}
 	if (opPizzas == 7) {
 		Pizza* pizza = new Barbacoa();
 		builder->agregarPizza(pizza);
 		cout << "Se agrego Pizza Barbacoa al pedido! Presione Enter para continuar...";
-		cin.ignore(); cin.get(); system("cls");
+		cin.ignore(); cin.get();
 	}
 	if (opPizzas == 8) {
 		Pizza* pizza = new Calzone();
 		builder->agregarPizza(pizza);
 		cout << "Se agrego Pizza Calzone al pedido! Presione Enter para continuar...";
-		cin.ignore(); cin.get(); system("cls");
+		cin.ignore(); cin.get(); 
 	}
+	system("cls");
 }
 
 void SistemaOrdenes::agregarPasta() {
@@ -242,38 +263,108 @@ void SistemaOrdenes::agregarPasta() {
 		Pasta* pasta = new Spaghetti_a_lo_Alfredo();
 		builder->agregarPasta(pasta);
 		cout << "Se agrego Spaghetti a lo Alfredo al pedido! Presione Enter para continuar...";
-		cin.ignore(); cin.get(); system("cls");
+		cin.ignore(); cin.get(); 
 	}
 	if (opPastas == 2) {
 		Pasta* pasta = new Pasta_Puttanesca();
 		builder->agregarPasta(pasta);
 		cout << "Se agrego Pasta Puttanesca al pedido! Presione Enter para continuar...";
-		cin.ignore(); cin.get(); system("cls");
+		cin.ignore(); cin.get(); 
 	}
 	if (opPastas == 3) {
 		Pasta* pasta = new Tallarines_y_Champinones();
 		builder->agregarPasta(pasta);
 		cout << "Se agrego Tallarines en Salsa Blanca y Mushrooms al pedido! Presione Enter para continuar...";
-		cin.ignore(); cin.get(); system("cls");
+		cin.ignore(); cin.get(); 
 	}
 	if (opPastas == 4) {
 		Pasta* pasta = new Raviolis();
 		builder->agregarPasta(pasta);
 		cout << "Se agrego Raviolis al pedido! Presione Enter para continuar...";
-		cin.ignore(); cin.get(); system("cls");
+		cin.ignore(); cin.get(); 
 	}
 	if (opPastas == 5) {
 		Pasta* pasta = new Lasagna_Original();
 		builder->agregarPasta(pasta);
 		cout << "Se agrego Lasagna Original Italiana al pedido! Presione Enter para continuar...";
-		cin.ignore(); cin.get(); system("cls");
+		cin.ignore(); cin.get();
 	}
 	if (opPastas == 6) {
 		Pasta* pasta = new Lasagna_Especial();
 		builder->agregarPasta(pasta);
 		cout << "Se agrego Lasagna Especial de la Casa al pedido! Presione Enter para continuar...";
-		cin.ignore(); cin.get(); system("cls");
+		cin.ignore(); cin.get(); 
 	}
+	system("cls");
+}
+
+void SistemaOrdenes::agregarBebida() {
+
+	int opBebidas = opcionBebidas();
+
+	if (opBebidas == 1) {
+		Bebida* bebida = new CocaCola();
+		builder->agregarBebida(bebida);
+		cout << "Se agrego Coca Cola al pedido! Presione Enter para continuar...";
+		cin.ignore(); cin.get(); 
+	}
+	if (opBebidas == 2) {
+		Bebida* bebida = new IncaCola();
+		builder->agregarBebida(bebida);
+		cout << "Se agrego Inca Cola Puttanesca al pedido! Presione Enter para continuar...";
+		cin.ignore(); cin.get(); 
+	}
+	if (opBebidas == 3) {
+		Bebida* bebida = new Sprite();
+		builder->agregarBebida(bebida);
+		cout << "Se agrego Sprite al pedido! Presione Enter para continuar...";
+		cin.ignore(); cin.get();
+	}
+	if (opBebidas == 4) {
+		Bebida* bebida = new Fanta();
+		builder->agregarBebida(bebida);
+		cout << "Se agrego Fanta al pedido! Presione Enter para continuar...";
+		cin.ignore(); cin.get(); 
+	}
+	if (opBebidas == 5) {
+		Bebida* bebida = new AguaMineral();
+		builder->agregarBebida(bebida);
+		cout << "Se agrego Agua Mineral al pedido! Presione Enter para continuar...";
+		cin.ignore(); cin.get(); 
+	}
+	system("cls");
+}
+
+void SistemaOrdenes::agregarPostre() {
+
+	int opPostres = opcionPostres();
+
+	if (opPostres == 1) {
+		Postre* postre = new Pizza_de_chocolate();
+		builder->agregarPostre(postre);
+		cout << "Se agrego Pizza de Chocolate al pedido! Presione Enter para continuar...";
+		cin.ignore(); cin.get(); 
+	}
+	if (opPostres == 2) {
+		Postre* postre = new Churro_D_ITALIA();
+		builder->agregarPostre(postre);
+		cout << "Se agrego Churro d'Italia al pedido! Presione Enter para continuar...";
+		cin.ignore(); cin.get();
+	}
+	if (opPostres == 3) {
+		Postre* postre = new Rolls_De_Manajar();
+		builder->agregarPostre(postre);
+		cout << "Se agrego Rolls de Manjar al pedido! Presione Enter para continuar...";
+		cin.ignore(); cin.get(); 
+	}
+	if (opPostres == 4) {
+		Postre* postre = new Volcan_De_Chocolate();
+		builder->agregarPostre(postre);
+		cout << "Se agrego Volcan de Chocolate al pedido! Presione Enter para continuar...";
+		cin.ignore(); cin.get(); 
+	}
+	system("cls");
+
 }
 
 void SistemaOrdenes::eliminar() {
@@ -284,6 +375,9 @@ void SistemaOrdenes::eliminar() {
 		switch (op_eliminar)
 		{
 		case 1: eliminarTipo("pizza"); break;
+		case 2: eliminarTipo("pasta"); break;
+		case 3: eliminarTipo("bebida"); break;
+		case 4: eliminarTipo("postre"); break;
 		}
 	} while (op_eliminar != 0);
 
@@ -304,6 +398,46 @@ void SistemaOrdenes::eliminarTipo(string tipo) {
 			}
 		} while (op != 0);
 	}
+
+	if (tipo == "pasta") {
+		int op;
+		do {
+			op = opcionEliminarTipo(tipo);
+			if (op != 0) {
+				builder->eliminarPasta(op - 1);
+				cout << "Se elimino la pasta en la posicion " << op << "...Presione Enter para continuar...";
+				cin.ignore(); cin.get();
+				system("cls");
+			}
+		} while (op != 0);
+	}
+
+	if (tipo == "bebida") {
+		int op;
+		do {
+			op = opcionEliminarTipo(tipo);
+			if (op != 0) {
+				builder->eliminarBebida(op - 1);
+				cout << "Se elimino la bebida en la posicion " << op << "...Presione Enter para continuar...";
+				cin.ignore(); cin.get();
+				system("cls");
+			}
+		} while (op != 0);
+	}
+
+	if (tipo == "postre") {
+		int op;
+		do {
+			op = opcionEliminarTipo(tipo);
+			if (op != 0) {
+				builder->eliminarPostre(op - 1);
+				cout << "Se elimino la bebida en la posicion " << op << "...Presione Enter para continuar...";
+				cin.ignore(); cin.get();
+				system("cls");
+			}
+		} while (op != 0);
+	}
+
 	system("cls");
 }
 
