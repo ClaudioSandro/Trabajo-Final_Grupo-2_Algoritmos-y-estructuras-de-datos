@@ -75,12 +75,13 @@ void Sesion::iniciarSesion() {
         cout << "3. Salir de Sapore D' Italia" << endl << endl;
         cout << "Opcion: ";
         cin >> opcionSesion;
-
+        info datos;
         switch (opcionSesion) {
         case 1:
-            if (loginSesion.ValidaCliente() == true) {
+            if (loginSesion.ValidaCliente(datos) == true) {
                 system("cls");
                 setTipoCuenta("Cliente");
+                usuarioCliente.setPersonal(datos);
                 int op;
                 do {
                     op = menuPrincipal();

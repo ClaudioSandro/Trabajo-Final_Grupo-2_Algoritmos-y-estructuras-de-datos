@@ -12,19 +12,19 @@ public:
     Login() { }
     ~Login() { }
 
-    void CrearCuentaCliente();
+    void CrearCuentaCliente(info& datos);
     void MostrarMenuCliente();
     //void MostrarMenuTrabajador(); //No tiene sentido que el trabajador se registre, solo que inicie sesion
-    bool ValidaCliente();
+    bool ValidaCliente(info& datos);
     bool ValidaTrabajador();
 };
 
-void Login::CrearCuentaCliente() {
+void Login::CrearCuentaCliente(info& datos) {
     Registro registroCliente;
 
     registroCliente.LlenarFormulario();
 
-    ValidaCliente();
+    ValidaCliente(datos);
 }
 
 void Login::MostrarMenuCliente() {
@@ -37,7 +37,7 @@ void Login::MostrarMenuCliente() {
 }
 
 
-bool Login::ValidaCliente() {
+bool Login::ValidaCliente(info &datos) {
 
     ValidarCliente validarClientaso;
 
@@ -56,7 +56,7 @@ bool Login::ValidaCliente() {
         cout << "Ingrese su Contrasenia de cliente: ";
         cin >> contraseñaCliente;
 
-        if (validarClientaso.validacionClientaso(nombreCliente, contraseñaCliente)) {
+        if (validarClientaso.validacionClientaso(nombreCliente, contraseñaCliente, datos)) {
             return true;
         }
         else {
@@ -67,7 +67,7 @@ bool Login::ValidaCliente() {
     case 2:
         system("cls");
 
-        CrearCuentaCliente();
+        CrearCuentaCliente(datos);
 
         return true;
         break;

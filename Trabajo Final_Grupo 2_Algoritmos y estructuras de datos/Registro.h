@@ -27,6 +27,7 @@ void Registro::escribir(string nombreCliente1, string telefonoCliente1, string d
 	archivo.open("Cliente.txt", ios::app);
 	if (archivo.is_open())
 	{
+		archivo << endl;
 		archivo << nombreCliente1 << ",";
 		archivo << telefonoCliente1 << ",";
 		archivo << direccionCliente1 << ",";

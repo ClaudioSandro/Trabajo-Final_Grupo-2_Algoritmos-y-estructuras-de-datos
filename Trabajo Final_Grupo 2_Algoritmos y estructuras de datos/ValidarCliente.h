@@ -5,7 +5,7 @@
 class ValidarCliente
 {
 public:
-	bool validacionClientaso(string userCliente, string passwordCliente) {
+	bool validacionClientaso(string userCliente, string passwordCliente, info &datos) {
 		ifstream archivo("Cliente.txt");
 		if (!archivo.is_open()) {
 			cout << "Error al abrir el archivo" << endl;
@@ -15,16 +15,16 @@ public:
 		string line;
 		while (getline(archivo, line)) {
 			stringstream s(line);
-			string nombreCliente, telefonoCliente, direccionCliente; //no son necesarios, pero se deben leer
+			
 			string userCliente1, passwordCliente1;
 			string aux;
 
 			getline(s, aux, ',');
-			nombreCliente = aux;
+			datos.nombre = aux;
 			getline(s, aux, ',');
-			telefonoCliente = aux;
+			datos.telefono = aux;
 			getline(s, aux, ',');
-			direccionCliente = aux;
+			datos.direccion = aux;
 			getline(s, aux, ',');
 			userCliente1 = aux;
 			getline(s, aux, ',');
