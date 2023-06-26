@@ -31,7 +31,7 @@ void Login::MostrarMenuCliente() {
 
     do {
         system("cls");
-        cout << "Como cliente voy a... " << endl << "1. Iniciar sesion " << endl << "2. Registrarse \n\n" << "Opcion: ";
+        cout << "BIENVENIDO CLIENTE " << endl << endl << "1. Iniciar sesion " << endl << "2. Registrarse \n\n" << "Opcion: ";
         cin >> RespuestaCliente;
     } while (RespuestaCliente < 1 || RespuestaCliente > 2);
 }

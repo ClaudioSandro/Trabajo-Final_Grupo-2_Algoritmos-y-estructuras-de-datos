@@ -49,12 +49,12 @@ int Sesion::opcionPagarBoleta() {
     int op;
     cout << "SELECCIONE LA BOLETA QUE DESEA PAGAR" << endl << endl;
     int cont = 0;
-    for (const auto& boleta : boletas) {
-        if (boleta.dato->getEstado() == "Por pagar") {
+    for (int i = 0; i < boletas.size(); i++) {
+        if (boletas[i]->getEstado() == "Por pagar") {
             linea();
             cout << "BOLETA 00" << cont + 1 << endl;
             
-            boleta.dato->mostrar(); cout << endl << endl;
+            boletas[i]->mostrar(); cout << endl << endl;
         }
         cont++;
     }
