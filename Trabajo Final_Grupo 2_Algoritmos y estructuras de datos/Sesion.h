@@ -70,8 +70,8 @@ void Sesion::iniciarSesion() {
     do {
         system("cls");
         cout << "BIENVENIDO A LA APP SAPORE D'ITALIA" << endl << endl;
-        cout << "1. Login like Cliente" << endl;
-        cout << "2. Login like Trabajador" << endl;
+        cout << "1. Login as Cliente" << endl;
+        cout << "2. Login as Trabajador" << endl;
         cout << "3. Salir de Sapore D' Italia" << endl << endl;
         cout << "Opcion: ";
         cin >> opcionSesion;
@@ -85,7 +85,7 @@ void Sesion::iniciarSesion() {
                 int op;
                 do {
                     op = menuPrincipal();
-                } while (op!= 4);
+                } while (op!= 5);
                 
             }
             else {
@@ -117,18 +117,25 @@ int Sesion::menuPrincipal() {
     string tipoCuenta = getTipoCuenta(); //Esto se obtiene del sistema de validacion de cuenta
 
     if (tipoCuenta == "Cliente") {
-        int op = menu.mostrarMenu("Cliente");
+        int op = menu.mostrarMenu("Cliente", usuarioCliente.getPersonal());
         system("cls");
         switch (op) {
         case 1: sistemaOrdenes(); break;
         case 2: sistemaBoletas(); break;
         case 3: sistemaPagos(); break;
-        case 4: break;
+        case 4: 
+            cout << "DATOS DE CUENTA" << endl << endl;
+            usuarioCliente.mostrar(); cout << endl;
+            cout << "Presione Enter para continuar...";
+            cin.ignore(); cin.get(); system("cls");
+
+            break;
+        case 5: break;
         }
         return op;
     }
 	else if (tipoCuenta == "Trabajador") {
-		int op = menu.mostrarMenu("Trabajador");
+		int op = menu.mostrarMenu("Trabajador", usuarioCliente.getPersonal());
 		system("cls");
 		switch (op) {
         case 1: break;

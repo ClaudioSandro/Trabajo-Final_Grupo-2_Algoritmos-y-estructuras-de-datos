@@ -7,6 +7,8 @@
 #include <sstream>
 #include <vector>
 #include "Lista.h"
+#include <algorithm>
+#include <cctype>
 
 using namespace System;
 using namespace std;

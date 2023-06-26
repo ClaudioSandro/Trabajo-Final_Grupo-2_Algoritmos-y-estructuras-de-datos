@@ -31,9 +31,9 @@ public:
 			passwordCliente1 = aux;
 
 			if (userCliente == userCliente1 && passwordCliente == passwordCliente1) {
-				system("cls");
-				cout << "INICIO DE SESION CORRECTO" << endl;
-				cout << "Bienvenido " << userCliente << endl << endl;
+				cout << endl;
+				cout << "Autenticacion completada!!! ";
+				cout << "Bienvenido " << datos.nombre << "!!!" << endl;
 				system("pause");
 				return true;
 			}

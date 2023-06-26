@@ -50,10 +50,10 @@ bool Login::ValidaCliente(info &datos) {
     switch (RespuestaCliente) {
     case 1:
         system("cls");
-        cout << "Ingrese su Nombre de cliente: ";
+        cout << "Ingrese usuario de cliente: ";
         cin >> nombreCliente;
 
-        cout << "Ingrese su Contrasenia de cliente: ";
+        cout << "Ingrese su contrasenia de cliente: ";
         cin >> contraseñaCliente;
 
         if (validarClientaso.validacionClientaso(nombreCliente, contraseñaCliente, datos)) {
