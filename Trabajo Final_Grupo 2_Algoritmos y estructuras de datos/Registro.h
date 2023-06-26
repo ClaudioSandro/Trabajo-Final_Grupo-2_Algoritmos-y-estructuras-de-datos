@@ -41,20 +41,21 @@ void Registro::escribir(string nombreCliente1, string telefonoCliente1, string d
 
 void Registro::LlenarFormulario() {
 
+	getline(cin, DatosCliente.nombreCliente);
 	cout << "Ingrese su Nombre: ";
-	cin >> DatosCliente.nombreCliente;
+	getline(cin, DatosCliente.nombreCliente);
 
 	cout << "Ingrese su Telefono: ";
-	cin >> DatosCliente.telefonoCliente;
+	getline(cin, DatosCliente.telefonoCliente);
 
 	cout << "Ingrese su Direccion: ";
-	cin >> DatosCliente.direccionCliente;
+	getline(cin, DatosCliente.direccionCliente);
 
 	cout << "Ingrese su Usuario: ";
-	cin >> DatosCliente.usuarioCliente;
+	getline(cin, DatosCliente.usuarioCliente);
 
 	cout << "Ingrese su Contraseña: ";
-	cin >> DatosCliente.contraseniaCliente;
+	getline(cin, DatosCliente.contraseniaCliente);
 
 	escribir(DatosCliente.nombreCliente, DatosCliente.telefonoCliente, DatosCliente.direccionCliente, DatosCliente.usuarioCliente, DatosCliente.contraseniaCliente);
 

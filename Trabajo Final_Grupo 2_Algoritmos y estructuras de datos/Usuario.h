@@ -3,7 +3,7 @@
 
 class Usuario {
 
-private:
+protected:
 
 	info personal;
 

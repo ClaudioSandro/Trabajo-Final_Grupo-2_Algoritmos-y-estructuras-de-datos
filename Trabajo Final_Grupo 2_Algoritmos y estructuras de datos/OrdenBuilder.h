@@ -30,25 +30,25 @@ public:
     void eliminarPizza(int pos) {
         Pizza* pizza = orden.pizzas[pos];
         orden.total -= pizza->getPrecio();
-        orden.pizzas.erase(orden.pizzas.begin() + pos);    
+        orden.pizzas.erase(pos);
     }
 
     void eliminarPasta(int pos) {
         Pasta* pasta = orden.pastas[pos];
         orden.total -= pasta->getPrecio();
-        orden.pastas.erase(orden.pastas.begin() + pos);
+        orden.pastas.erase(pos);
     }
 
     void eliminarBebida(int pos) {
         Bebida* bebida = orden.bebidas[pos];
         orden.total -= bebida->getPrecio();
-        orden.bebidas.erase(orden.bebidas.begin() + pos);
+        orden.bebidas.erase(pos);
     }
 
     void eliminarPostre(int pos) {
         Postre* postre = orden.postres[pos];
         orden.total -= postre->getPrecio();
-        orden.postres.erase(orden.postres.begin() + pos);
+        orden.postres.erase(pos);
     }
 
     void mostrar() {

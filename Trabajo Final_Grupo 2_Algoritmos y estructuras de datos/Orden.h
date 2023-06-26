@@ -8,10 +8,10 @@ class Orden {
 
 public:
 
-    vector<Pizza*> pizzas;
-    vector<Pasta*> pastas;
-    vector<Bebida*> bebidas;
-    vector<Postre*> postres;
+    Lista<Pizza*> pizzas;
+    Lista<Pasta*> pastas;
+    Lista<Bebida*> bebidas;
+    Lista<Postre*> postres;
     double total = 0.0;
 
 
@@ -41,25 +41,25 @@ Orden::~Orden() {
 
 void Orden::mostrarOrden() {
 
-
-    for (const auto& pizza : pizzas) {
-        cout << pizza->getNombre() << " S/" << pizza->getPrecio();
+    
+    for (int i = 0; i < pizzas.size(); i++) {
+        cout << pizzas[i]->getNombre() << " S/" << pizzas[i]->getPrecio();
         cout << endl;
     }
 
-    for (const auto& pasta : pastas) {
-        cout << pasta->getNombre() << " S/" << pasta->getPrecio();
+    for (int i = 0; i < pastas.size(); i++) {
+        cout << pastas[i]->getNombre() << " S/" << pastas[i]->getPrecio();
+        cout << endl;  
+    }
+
+    for (int i = 0; i < bebidas.size(); i++) {
+        cout << bebidas[i]->getNombre() << " S/" << bebidas[i]->getPrecio();
         cout << endl;
     }
 
-    for (const auto& bebida : bebidas) {
-        cout << bebida->getNombre() << " S/" << bebida->getPrecio();
-        cout << endl;
-    }
-
-    for (const auto& postre : postres) {
-        cout << postre->getNombre() << " S/" << postre->getPrecio();
-        cout << endl;
+    for (int i = 0; i < postres.size(); i++) {
+        cout << postres[i]->getNombre() << " S/" << postres[i]->getPrecio();
+        cout << endl;       
     }
     cout << endl;
     cout << "Total: S/" << total << endl;
@@ -69,8 +69,8 @@ void Orden::mostrarTipo(string tipo) {
 
     if (tipo == "pizza") {
         int cont = 1;
-        for (const auto& pizza : pizzas) {
-            cout << cont << ". " << pizza->getNombre();
+        for (int i = 0; i < pizzas.size(); i++) {
+            cout << cont << ". " << pizzas[i]->getNombre();
             cout << endl;
             cont++;
         }
@@ -78,8 +78,8 @@ void Orden::mostrarTipo(string tipo) {
 
     if (tipo == "pasta") {
         int cont = 1;
-        for (const auto& pasta : pastas) {
-            cout << cont << ". " << pasta->getNombre();
+        for (int i = 0; i < pastas.size(); i++) {
+            cout << cont << ". " << pastas[i]->getNombre();
             cout << endl;
             cont++;
         }
@@ -87,8 +87,8 @@ void Orden::mostrarTipo(string tipo) {
 
     if (tipo == "bebida") {
         int cont = 1;
-        for (const auto& bebida : bebidas) {
-            cout << cont << ". " << bebida->getNombre();
+        for (int i = 0; i < bebidas.size(); i++) {
+            cout << cont << ". " << bebidas[i]->getNombre();
             cout << endl;
             cont++;
         }
@@ -96,8 +96,8 @@ void Orden::mostrarTipo(string tipo) {
 
     if (tipo == "postre") {
         int cont = 1;
-        for (const auto& postre : postres) {
-            cout << cont << ". " << postre->getNombre();
+        for (int i = 0; i < postres.size(); i++) {
+            cout << cont << ". " << postres[i]->getNombre();
             cout << endl;
             cont++;
         }

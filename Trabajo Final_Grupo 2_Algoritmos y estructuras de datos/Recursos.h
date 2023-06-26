@@ -6,6 +6,7 @@
 #include <string.h>
 #include <sstream>
 #include <vector>
+#include "Lista.h"
 
 using namespace System;
 using namespace std;
