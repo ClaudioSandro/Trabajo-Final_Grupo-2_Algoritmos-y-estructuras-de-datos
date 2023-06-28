@@ -8,6 +8,16 @@
 #include <vector>
 #include <algorithm>
 #include <ctime>
+#include <iomanip> // Para formatear la salida de números decimales
+#include <map> // Para almacenar el recuento de comidas, bebidas y postres
+
+map<string, int> comidaCount;
+map<string, int> bebidaCount;
+map<string, int> postreCount;
+map<string, double> comidaTotalPrice;
+map<string, double> bebidaTotalPrice;
+map<string, double> postreTotalPrice;
+
 
 using namespace std;
 
@@ -171,6 +181,52 @@ void filterOrders(TreeNode* root, int filterType) {
             << order.food << ", " << order.beverage << ", " << order.dessert
             << " - precio: " << order.totalPrice << endl;
     }
+    cout << "Comida promedio por comensal:" << endl;
+    for (const auto& entry : comidaCount) {
+        double averageCount = static_cast<double>(entry.second) / 1000;
+        cout << entry.first << ": " << setprecision(2) << fixed << averageCount << endl;
+    }
+
+    cout << endl;
+    cout << "Bebida promedio por comensal:" << endl;
+    for (const auto& entry : bebidaCount) {
+        double averageCount = static_cast<double>(entry.second) / 1000;
+        cout << entry.first << ": " << setprecision(2) << fixed << averageCount << endl;
+    }
+    cout << endl;
+
+    cout << "Postre promedio por comensal:" << endl;
+    for (const auto& entry : postreCount) {
+        double averageCount = static_cast<double>(entry.second) / 1000;
+        cout << entry.first << ": " << setprecision(2) << fixed << averageCount << endl;
+    }
+
+    cout << endl;
+
+    cout << "Gasto promedio por comensal:" << endl;
+
+    double totalSum = 0.0;
+    int totalCount = 0;
+
+    for (const auto& entry : comidaTotalPrice) {
+        totalSum += entry.second;
+        totalCount += 1;
+    }
+
+    for (const auto& entry : bebidaTotalPrice) {
+        totalSum += entry.second;
+        totalCount += 1;
+    }
+
+    for (const auto& entry : postreTotalPrice) {
+        totalSum += entry.second;
+        totalCount += 1;
+    }
+
+    double overallAveragePrice = totalSum / static_cast<double>(totalCount);
+    cout << "El gasto promedio de un comensal es de: $" << setprecision(2) << fixed << overallAveragePrice << endl;
+
+
 }
 
 TreeNode* find(TreeNode* root, const string& orderNumber) {
@@ -341,6 +397,19 @@ void Sesion::iniciarSesion(HashTable<USCON, DCliente> &hash) {
                     cout << "orden: " << orderNumber << "-" << food << ", " << beverage << ", " << dessert
                         << "-precio: " << totalPrice << endl;
 
+                    // Actualizar el recuento y el total de precios de comidas
+                    comidaCount[food]++;
+                    comidaTotalPrice[food] += getPrice(food);
+
+                    // Actualizar el recuento y el total de precios de bebidas
+                    bebidaCount[beverage]++;
+                    bebidaTotalPrice[beverage] += getPrice(beverage);
+
+                    // Actualizar el recuento y el total de precios de postres
+                    postreCount[dessert]++;
+                    postreTotalPrice[dessert] += getPrice(dessert);
+
+
                 }
                 system("cls");
                 int option;
@@ -366,7 +435,10 @@ void Sesion::iniciarSesion(HashTable<USCON, DCliente> &hash) {
 
                         // Limpiar la pantalla (código omitido)
                         system("cls");
+                        system("cls");
                         filterOrders(root, filterOption);
+                        system("pause");
+                        system("cls");
                         break;
                     }
                     case 2: {
