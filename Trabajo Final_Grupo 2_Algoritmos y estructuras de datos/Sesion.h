@@ -241,6 +241,42 @@ int Sesion::opcionPagarBoleta() {
 
 void Sesion::iniciarSesion() {
     Login loginSesion;
+    DCliente x;
+    HashTable<USCON, DCliente> hash(2000);
+
+    ifstream archivo("Cliente.txt");
+    if (!archivo.is_open()) {
+        cout << "Error al abrir el archivo" << endl;
+
+    }
+    int cont = 0;
+    string line;
+    while (getline(archivo, line)) {
+        stringstream s(line);
+        
+        USCON y;
+        string aux;
+
+        getline(s, aux, ',');
+        x.nombreCliente = aux;
+        getline(s, aux, ',');
+        x.direccionCliente = aux;
+        getline(s, aux, ',');
+        x.telefonoCliente = aux;
+        getline(s, aux, ',');
+        y.usuario = aux;
+        x.usuarioCliente = aux;
+        getline(s, aux, ','); getline(s, aux, ' ');
+        y.contrasena = aux;
+        x.contraseniaCliente = aux;
+
+        hash.insert(y, x);
+        cout << cont << " Dato ingreado a hashtable"  << endl;
+        cont++;
+    }
+    cout << endl;
+    cout << "Se cargaron todos los datos correctamentente..." << endl;
+    cin.ignore(); cin.get(); system("cls");
 
     int opcionSesion;
     do {
@@ -254,7 +290,7 @@ void Sesion::iniciarSesion() {
         info datos;
         switch (opcionSesion) {
         case 1:
-            if (loginSesion.ValidaCliente(datos) == true) {
+            if (loginSesion.ValidaCliente(datos, hash) == true) {
                 system("cls");
                 setTipoCuenta("Cliente");
                 usuarioCliente.setPersonal(datos);

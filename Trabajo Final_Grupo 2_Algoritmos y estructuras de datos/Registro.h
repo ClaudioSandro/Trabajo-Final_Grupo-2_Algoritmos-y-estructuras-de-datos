@@ -18,7 +18,7 @@ public:
 	~Registro() { }
 
 	void escribir(string nombreCliente1, string telefonoCliente1, string direccionCliente1, string usuarioCliente1, string contraseñaCliente1);
-	void LlenarFormulario();
+	void LlenarFormulario(HashTable<USCON, DCliente>& hash);
 
 };
 
@@ -27,12 +27,12 @@ void Registro::escribir(string nombreCliente1, string telefonoCliente1, string d
 	archivo.open("Cliente.txt", ios::app);
 	if (archivo.is_open())
 	{
-		archivo << endl;
+		
 		archivo << nombreCliente1 << ",";
 		archivo << telefonoCliente1 << ",";
 		archivo << direccionCliente1 << ",";
 		archivo << usuarioCliente1 << ",";
-		archivo << contraseñaCliente1 << endl;
+		archivo << contraseñaCliente1;
 		archivo.close();
 	}
 	else {
@@ -40,7 +40,7 @@ void Registro::escribir(string nombreCliente1, string telefonoCliente1, string d
 	}
 }
 
-void Registro::LlenarFormulario() {
+void Registro::LlenarFormulario(HashTable<USCON, DCliente>& hash) {
 
 	getline(cin, DatosCliente.nombreCliente);
 	cout << "Ingrese su Nombre: ";
@@ -58,7 +58,11 @@ void Registro::LlenarFormulario() {
 	cout << "Ingrese su Contraseña: ";
 	getline(cin, DatosCliente.contraseniaCliente);
 
+	USCON y;
+	y.usuario = DatosCliente.usuarioCliente;
+	y.contrasena = DatosCliente.contraseniaCliente;
 	escribir(DatosCliente.nombreCliente, DatosCliente.telefonoCliente, DatosCliente.direccionCliente, DatosCliente.usuarioCliente, DatosCliente.contraseniaCliente);
+	hash.insert(y, DatosCliente);
 
 	cout << "\n\nSe ha creado su cuenta exitosamente, ahora inicie sesion con su Usuario y Contrasenia" << endl;
 	system("pause");

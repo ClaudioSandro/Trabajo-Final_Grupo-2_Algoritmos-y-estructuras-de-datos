@@ -9,36 +9,46 @@
 #include "Lista.h"
 #include <algorithm>
 #include <cctype>
+#include "HashTable.h"
 
 using namespace System;
 using namespace std;
 
 struct tarjeta {
-	string empresa;
-	string titular;
-	string numero;
-	string codigo;
-	string vencimiento;
+    std::string empresa;
+    std::string titular;
+    std::string numero;
+    std::string codigo;
+    std::string vencimiento;
+
+    bool operator==(const tarjeta& other) const {
+        return (empresa == other.empresa && titular == other.titular && numero == other.numero && codigo == other.codigo && vencimiento == other.vencimiento);
+    }
 };
 
 struct DCliente {
-	string nombreCliente;
-	string telefonoCliente;
-	string direccionCliente;
-	string contraseniaCliente;
-	string usuarioCliente;
+    std::string nombreCliente;
+    std::string telefonoCliente;
+    std::string direccionCliente;
+    std::string contraseniaCliente;
+    std::string usuarioCliente;
+
+    bool operator==(const DCliente& other) const {
+        return (nombreCliente == other.nombreCliente && telefonoCliente == other.telefonoCliente && direccionCliente == other.direccionCliente && contraseniaCliente == other.contraseniaCliente && usuarioCliente == other.usuarioCliente);
+    }
 };
 
 struct info {
-	string nombre;
-	string telefono;
-	string direccion;
+    std::string nombre;
+    std::string telefono;
+    std::string direccion;
+
+    bool operator==(const info& other) const {
+        return (nombre == other.nombre && telefono == other.telefono && direccion == other.direccion);
+    }
 };
 
-struct data {
-	string usuario;
-	string contraseña;
-};
+
 
 void linea() {
 	cout << "--------------------------------------------"; cout << endl;

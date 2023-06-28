@@ -5,41 +5,21 @@
 class ValidarCliente
 {
 public:
-	bool validacionClientaso(string userCliente, string passwordCliente, info &datos) {
-		ifstream archivo("Cliente.txt");
-		if (!archivo.is_open()) {
-			cout << "Error al abrir el archivo" << endl;
+	bool validacionClientaso(string userCliente, string passwordCliente, info &datos, HashTable<USCON, DCliente>& hash) {
+		
+		USCON y;
+		y.usuario = userCliente; y.contrasena = passwordCliente;
+		DCliente result;
+
+		if (hash.getData(y, result)) {
+			datos.nombre = result.nombreCliente; datos.direccion = result.direccionCliente; datos.telefono = result.telefonoCliente;
+			return true;
+		}
+		else {
+			cout << "Usuario y/o contrasenia incorrectos" << endl;
 			return false;
 		}
 
-		string line;
-		while (getline(archivo, line)) {
-			stringstream s(line);
-			
-			string userCliente1, passwordCliente1;
-			string aux;
-
-			getline(s, aux, ',');
-			datos.nombre = aux;
-			getline(s, aux, ',');
-			datos.telefono = aux;
-			getline(s, aux, ',');
-			datos.direccion = aux;
-			getline(s, aux, ',');
-			userCliente1 = aux;
-			getline(s, aux, ',');
-			passwordCliente1 = aux;
-
-			if (userCliente == userCliente1 && passwordCliente == passwordCliente1) {
-				cout << endl;
-				cout << "Autenticacion completada!!! ";
-				cout << "Bienvenido " << datos.nombre << "!!!" << endl;
-				system("pause");
-				return true;
-			}
-		}
-
-		cout << "Usuario y/o contrasenia incorrectos" << endl;
-		return false;
+		
 	}
 };

@@ -12,19 +12,24 @@ public:
     Login() { }
     ~Login() { }
 
-    void CrearCuentaCliente(info& datos);
+    void iniciar();
+    void CrearCuentaCliente(info& dato, HashTable<USCON, DCliente> &hash);
     void MostrarMenuCliente();
     //void MostrarMenuTrabajador(); //No tiene sentido que el trabajador se registre, solo que inicie sesion
-    bool ValidaCliente(info& datos);
+    bool ValidaCliente(info& datos, HashTable<USCON, DCliente> &hash);
     bool ValidaTrabajador();
 };
 
-void Login::CrearCuentaCliente(info& datos) {
-    Registro registroCliente;
+void Login::iniciar() {
+    
+}
 
-    registroCliente.LlenarFormulario();
+void Login::CrearCuentaCliente(info & datos, HashTable<USCON, DCliente> &hash) {
+        Registro registroCliente;
 
-    ValidaCliente(datos);
+        registroCliente.LlenarFormulario(hash);
+
+        ValidaCliente(datos, hash);
 }
 
 void Login::MostrarMenuCliente() {
@@ -37,7 +42,7 @@ void Login::MostrarMenuCliente() {
 }
 
 
-bool Login::ValidaCliente(info &datos) {
+bool Login::ValidaCliente(info &datos, HashTable<USCON, DCliente> &hash) {
 
     ValidarCliente validarClientaso;
 
@@ -56,7 +61,7 @@ bool Login::ValidaCliente(info &datos) {
         cout << "Ingrese su contrasenia de cliente: ";
         cin >> contraseñaCliente;
 
-        if (validarClientaso.validacionClientaso(nombreCliente, contraseñaCliente, datos)) {
+        if (validarClientaso.validacionClientaso(nombreCliente, contraseñaCliente, datos, hash)) {
             return true;
         }
         else {
@@ -67,7 +72,7 @@ bool Login::ValidaCliente(info &datos) {
     case 2:
         system("cls");
 
-        CrearCuentaCliente(datos);
+        CrearCuentaCliente(datos, hash);
 
         return true;
         break;

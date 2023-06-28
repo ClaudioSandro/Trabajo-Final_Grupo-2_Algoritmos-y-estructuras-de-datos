@@ -118,6 +118,7 @@
     <ClInclude Include="Cliente.h" />
     <ClInclude Include="CuentaBancaria.h" />
     <ClInclude Include="Boleta.h" />
+    <ClInclude Include="HashTable.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="SistemaOrdenes.h" />
     <ClInclude Include="OrdenBuilder.h" />
