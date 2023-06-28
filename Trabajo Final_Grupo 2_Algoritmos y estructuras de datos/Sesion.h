@@ -153,6 +153,13 @@ void filterOrders(TreeNode* root, int filterType) {
             });
         break;
     }
+    case 3: {
+        // Filtrar por número de orden en orden ascendente
+        sort(orders.begin(), orders.end(), [](const Order& a, const Order& b) {
+            return a.orderNumber < b.orderNumber;
+            });
+        break;
+    }
     default:
         cout << "Opcion de filtro invalida." << endl;
         return;
@@ -162,8 +169,16 @@ void filterOrders(TreeNode* root, int filterType) {
     for (const auto& order : orders) {
         cout << "Orden numero " << order.orderNumber << " - "
             << order.food << ", " << order.beverage << ", " << order.dessert
-            << " - Precio: " << order.totalPrice << endl;
+            << " - precio: " << order.totalPrice << endl;
     }
+}
+
+TreeNode* find(TreeNode* root, const string& orderNumber) {
+    if (root == nullptr || root->order.orderNumber == orderNumber)
+        return root;
+    if (orderNumber < root->order.orderNumber)
+        return find(root->left, orderNumber);
+    return find(root->right, orderNumber);
 }
 
 
@@ -289,7 +304,7 @@ void Sesion::iniciarSesion() {
                 bool loggedIn = true;
 
                 while (loggedIn) {
-                    cout << "------- Menu principal -------" << endl;
+                    cout << "BIENVENIDO A LA APP SAPORE D'ITALIA" << endl;
                     cout << "1. Filtrar ordenes" << endl;
                     cout << "2. Atender orden" << endl;
                     cout << "3. Log out" << endl;
@@ -303,7 +318,7 @@ void Sesion::iniciarSesion() {
                         cout << "1. Filtrar por comidas" << endl;
                         cout << "2. Filtrar por precios" << endl;
                         cout << "3. Filtrar por # de orden" << endl;
-                        cout << "Ingrese su opción: ";
+                        cout << "Ingrese su opcion: ";
                         cin >> filterOption;
 
                         // Limpiar la pantalla (código omitido)
@@ -317,14 +332,26 @@ void Sesion::iniciarSesion() {
                         cout << "Inserte el numero de orden: ";
                         cin >> orderNumber;
 
-                        // Eliminar la orden del árbol
-                        root = remove(root, orderNumber);
+                        // Buscar la orden en el árbol
+                        TreeNode* node = find(root, orderNumber);
+                        if (node != nullptr) {
+                            Order order = node->order;
+                            // Eliminar la orden del árbol
+                            root = remove(root, orderNumber);
 
-                        cout << "Orden numero " << orderNumber << " atendida." << endl;
+                            cout << "Orden numero " << order.orderNumber << " atendida. Descripcion: "
+                                << order.food << ", " << order.beverage << ", " << order.dessert
+                                << " - Precio: " << order.totalPrice << endl;
+                        }
+                        else {
+                            cout << "La orden numero " << orderNumber << " no fue encontrada." << endl;
+                        }
+
                         system("pause");
                         system("cls");
                         break;
                     }
+
                     case 3:
                         loggedIn = false;
                         break;
