@@ -12,7 +12,7 @@ public:
     Login() { }
     ~Login() { }
 
-    void iniciar();
+    
     void CrearCuentaCliente(info& dato, HashTable<USCON, DCliente> &hash);
     void MostrarMenuCliente();
     //void MostrarMenuTrabajador(); //No tiene sentido que el trabajador se registre, solo que inicie sesion
@@ -20,15 +20,13 @@ public:
     bool ValidaTrabajador();
 };
 
-void Login::iniciar() {
-    
-}
+
 
 void Login::CrearCuentaCliente(info & datos, HashTable<USCON, DCliente> &hash) {
         Registro registroCliente;
 
         registroCliente.LlenarFormulario(hash);
-
+ 
         ValidaCliente(datos, hash);
 }
 

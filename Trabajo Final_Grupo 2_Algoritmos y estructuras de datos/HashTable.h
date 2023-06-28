@@ -58,17 +58,7 @@ public:
         buckets.resize(numBuckets, nullptr);
     }
 
-    ~HashTable() {
-        // Libera la memoria de los nodos
-        for (size_t i = 0; i < numBuckets; ++i) {
-            Node* current = buckets[i];
-            while (current) {
-                Node* temp = current;
-                current = current->next;
-                delete temp;
-            }
-        }
-    }
+    
 
     void insert(const KeyType& key, const ValueType& data) {
         size_t index = hashFunction(key);

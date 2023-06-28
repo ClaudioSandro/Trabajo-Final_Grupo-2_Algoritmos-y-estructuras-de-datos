@@ -201,12 +201,53 @@ public:
     int opcionBoletas();
     int opcionPagarBoleta();
     //principales
-    void iniciarSesion();
-    int menuPrincipal();
+    void iniciarSesion(HashTable<USCON, DCliente>& hash);
+    int menuPrincipal(HashTable<USCON, DCliente>& hash);
     void sistemaOrdenes();
     void sistemaPagos();
     void sistemaBoletas();
+    HashTable<USCON, DCliente> iniciar();
 };
+
+HashTable<USCON, DCliente> Sesion::iniciar() {
+    HashTable<USCON, DCliente> hash(2000);
+
+    ifstream archivo("Cliente.txt");
+    if (!archivo.is_open()) {
+        cout << "Error al abrir el archivo" << endl;
+
+    }
+    DCliente x;
+    int cont = 0;
+    string line;
+    while (getline(archivo, line)) {
+        stringstream s(line);
+
+        USCON y;
+        string aux;
+
+        getline(s, aux, ',');
+        x.nombreCliente = aux;
+        getline(s, aux, ',');
+        x.direccionCliente = aux;
+        getline(s, aux, ',');
+        x.telefonoCliente = aux;
+        getline(s, aux, ',');
+        y.usuario = aux;
+        x.usuarioCliente = aux;
+        getline(s, aux, ','); getline(s, aux, ' ');
+        y.contrasena = aux;
+        x.contraseniaCliente = aux;
+
+        hash.insert(y, x);
+        cout << cont << " Dato ingreado a hashtable" << endl;
+        cont++;
+    }
+    cout << endl;
+    cout << "Se cargaron todos los datos correctamentente..." << endl;
+    cin.ignore(); cin.get(); system("cls");
+    return hash;
+}
 
 int Sesion::opcionBoletas() {
     int op;
@@ -239,44 +280,10 @@ int Sesion::opcionPagarBoleta() {
     return op;
 }
 
-void Sesion::iniciarSesion() {
+void Sesion::iniciarSesion(HashTable<USCON, DCliente> &hash) {
     Login loginSesion;
-    DCliente x;
-    HashTable<USCON, DCliente> hash(2000);
-
-    ifstream archivo("Cliente.txt");
-    if (!archivo.is_open()) {
-        cout << "Error al abrir el archivo" << endl;
-
-    }
-    int cont = 0;
-    string line;
-    while (getline(archivo, line)) {
-        stringstream s(line);
-        
-        USCON y;
-        string aux;
-
-        getline(s, aux, ',');
-        x.nombreCliente = aux;
-        getline(s, aux, ',');
-        x.direccionCliente = aux;
-        getline(s, aux, ',');
-        x.telefonoCliente = aux;
-        getline(s, aux, ',');
-        y.usuario = aux;
-        x.usuarioCliente = aux;
-        getline(s, aux, ','); getline(s, aux, ' ');
-        y.contrasena = aux;
-        x.contraseniaCliente = aux;
-
-        hash.insert(y, x);
-        cout << cont << " Dato ingreado a hashtable"  << endl;
-        cont++;
-    }
-    cout << endl;
-    cout << "Se cargaron todos los datos correctamentente..." << endl;
-    cin.ignore(); cin.get(); system("cls");
+    
+    
 
     int opcionSesion;
     do {
@@ -296,7 +303,7 @@ void Sesion::iniciarSesion() {
                 usuarioCliente.setPersonal(datos);
                 int op;
                 do {
-                    op = menuPrincipal();
+                    op = menuPrincipal(hash);
                 } while (op != 5);
 
             }
@@ -410,7 +417,7 @@ void Sesion::iniciarSesion() {
 
 }
 
-int Sesion::menuPrincipal() {
+int Sesion::menuPrincipal(HashTable<USCON, DCliente>& hash) {
 
     MenuOpciones menu;
     string tipoCuenta = getTipoCuenta(); //Esto se obtiene del sistema de validacion de cuenta
@@ -439,7 +446,7 @@ int Sesion::menuPrincipal() {
         switch (op) {
         case 1: break;
         case 2: break;
-        case 3: iniciarSesion(); break;
+        case 3: iniciarSesion(hash); break;
         }
     }
 
